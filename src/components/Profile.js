@@ -1,37 +1,39 @@
-import React from 'react'
-import HandlePlaceService from '../services/HandlePlaceService'
+import React from "react";
+import HandlePlaceService from "../services/HandlePlaceService";
 import PlacesService from "../services/PlacesService";
 
-class Profile extends React.Component{
-
+class Profile extends React.Component {
   state = {
     leidos: [],
     leidosFull: [],
     leyendo: [],
     leyendoFull: [],
     porLeer: [],
-    porLeerFull: []
-  }
+    porLeerFull: [],
+  };
 
-  HandlePlaceService = new HandlePlaceService()
-  service = new PlacesService(); 
+  HandlePlaceService = new HandlePlaceService();
+  service = new PlacesService();
 
-  componentDidMount(){
+  componentDidMount() {
     this.HandlePlaceService.getUser(this.props.isLogged._id)
-    .then((response)=>{
-      this.setState({leidos: [...response.leidos], leyendo: [...response.leyendo], porLeer: [...response.porLeer]})
-      this.getFullWantToVisit()
-      this.getFullVisited()
-      this.getFullHotels()
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  
+      .then((response) => {
+        this.setState({
+          leidos: [...response.leidos],
+          leyendo: [...response.leyendo],
+          porLeer: [...response.porLeer],
+        });
+        this.getFullWantToVisit();
+        this.getFullVisited();
+        this.getFullHotels();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   // getFullLeidos = ()=>{
   //       const prueba = this.state.leidos.map((_id)=>{
-    
+
   //         return fetch(`https://api.jikan.moe/v3/place/${_id}`)
   //         .then((data)=>{
   //           return data.json()
@@ -40,60 +42,49 @@ class Profile extends React.Component{
   //           return dataJSON
   //         })
   //       })
-    
+
   //       Promise.all(prueba)
   //       .then((result)=>{
   //         this.setState({leidosFull : result})
   //       })
   //     }
 
-  
-
- getFullWantToVisit = () => {
-  const newArr = [];
-  this.state.leidos.map((poi) => {
-    return this.service
-      .getPois(poi)
-      .then((poiResult) => {
+  getFullWantToVisit = () => {
+    const newArr = [];
+    this.state.leidos.map((poi) => {
+      return this.service.getPois(poi).then((poiResult) => {
         newArr.push(poiResult);
         this.setState({
           leidosFull: newArr,
         });
-      })
-  });
-};
+      });
+    });
+  };
 
-
-  
-
-  getFullVisited = ()=>{
+  getFullVisited = () => {
     const newArr = [];
-  this.state.leyendo.map((poi) => {
-    return this.service
-      .getPois(poi)
-      .then((poiResult) => {
+    this.state.leyendo.map((poi) => {
+      return this.service.getPois(poi).then((poiResult) => {
         newArr.push(poiResult);
         this.setState({
           leyendoFull: newArr,
         });
-      })
-  });
-  }
+      });
+    });
+  };
 
-  getFullHotels = ()=>{
+  getFullHotels = () => {
     const newArr = [];
-  this.state.porLeer.map((poi) => {
-    return this.service
-      .getPois(poi)
-      .then((poiResult) => {
+    this.state.porLeer.map((poi) => {
+      return this.service.getPois(poi).then((poiResult) => {
         newArr.push(poiResult);
         this.setState({
           porLeerFull: newArr,
         });
-      })
-  });
-  }
-  
+      });
+    });
+  };
+
   renderLoadingImage = () => {
     return (
       <img
@@ -103,52 +94,162 @@ class Profile extends React.Component{
     );
   };
 
-  renderWantToVisit = ()=>{
+  renderWantToVisit = () => {
+    return this.state.leidosFull.map((place, index) => {
+      return (
+        <div key={index} class="card has-background-black">
+          <div class="card-image">
+            <figure class="image is-5by4">
+              <img
+                src={place.place.main_media.media[0].url}
+                alt={place.place.name_en}
+              />
+            </figure>
+            <p className="has-text-right mr-2">
+              <a href={place.place.main_media.media[0].attribution.title_url}>
+                Photo Attribution
+              </a>
+            </p>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content has-text-white">
+                <p class="title is-6 has-text-danger-dark">
+                  {place.place.name_local}
+                </p>
+                <p class="title is-6 has-text-white">{place.place.name_en}</p>
+                <p class="subtitle is-6 has-text-white">
+                  {place.place.name_suffix}
+                </p>
+              </div>
+            </div>
+            <div class="content has-text-white">
+              <div class="buttons">
+                <button class="button is-danger is-small">Delete</button>
+                <button class="button is-link is-small">Visited</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
 
-    return this.state.leidosFull.map((place, index)=>{
-      return ( 
-      <div key={index}>
-      <h3>{place.name_en}</h3>
-      {/* <h3>{this.state.leidosFull.place.name_en}</h3> */}
-      {/* <h3>{leidosFull.place.name_en}</h3> */}
-      {/* <h3>{this.state.place.name_en}</h3> */}
-      </div> 
-      )
-    })
-  }
+  renderVisited = () => {
+    return this.state.leyendoFull.map((place, index) => {
+      return (
+        <div key={index} class="card has-background-black">
+          <div class="card-image">
+            <figure class="image is-5by4">
+              <img
+                src={place.place.main_media.media[0].url}
+                alt={place.place.name_en}
+              />
+            </figure>
+            <p className="has-text-right mr-2">
+              <a href={place.place.main_media.media[0].attribution.title_url}>
+                Photo Attribution
+              </a>
+            </p>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content has-text-white">
+                <p class="title is-6 has-text-danger-dark">
+                  {place.place.name_local}
+                </p>
+                <p class="title is-6 has-text-white">{place.place.name_en}</p>
+                <p class="subtitle is-6 has-text-white">
+                  {place.place.name_suffix}
+                </p>
+              </div>
+            </div>
+            <div class="content has-text-white">
+              <div class="buttons">
+                <button class="button is-danger is-small">Delete</button>
+                <button class="button is-link is-small">Not visited</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
 
-  renderLeyendo = ()=>{
+  renderHotels = () => {
+    return this.state.porLeerFull.map((place, index) => {
+      return (
+        <div key={index} class="card has-background-black">
+          <div class="card-image">
+            <figure class="image is-5by4">
+              <img
+                src={place.place.thumbnail_url}
+                alt={place.place.name_en}
+              />
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content has-text-white">
+                <p class="title is-6 has-text-white">{place.place.name_en}</p>
+                <p class="subtitle is-6 has-text-white">
+                  {place.place.name_suffix}
+                </p>
+              </div>
+            </div>
+            <div class="content has-text-white">
+              <a class="button is-info" href={place.place.references[0].url} target="_blank">
+                Booking.com
+              </a>
+              <br />
+              <div class="buttons">
+                <button class="button is-danger is-small">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
 
-    return this.state.leyendoFull.map((place, index)=>{
-      return <h3>{place.name_en}</h3>
-    })
-  }
-
-  renderPorLeer = ()=>{
-
-    return this.state.porLeerFull.map((place, index)=>{
-      return <h3>{place.name_en}</h3>
-    })
-  }
-
-  render(){
-    return(
+  render() {
+    return (
       <div>
         <h2>Welcome, {this.props.isLogged.username}</h2>
-        {this.state.leidosFull.length == 0 ? this.renderLoadingImage() : this.renderWantToVisit()}
-        {/* {this.state.leidosFull.length > 0 && this.renderWantToVisit()} */}
-        {/* {this.state.leyendoFull.length > 0 && this.renderLeyendo()}
-        {this.state.porLeerFull.length > 0 && this.renderPorLeer()} */}
+        <section class="hero is-medium is-primary is-bold">
+          <div class="hero-body">
+            <div class="container">
+              <div class="columns">
+                <div class="column is-2">
+                  Places I want to visit
+                  {this.state.leidosFull.length === 0
+                    ? this.renderLoadingImage()
+                    : this.renderWantToVisit()}
+                </div>
+                <div class="column is-2">
+                  Places I've already visited
+                  {this.state.leyendoFull.length === 0
+                    ? this.renderLoadingImage()
+                    : this.renderVisited()}
+                </div>
+                <div class="column is-2">
+                  Hotel booking
+                  {this.state.porLeerFull.length === 0
+                    ? this.renderLoadingImage()
+                    : this.renderHotels()}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-    )    
+    );
   }
 }
 
 // {this.state.leidosFull === "" ? this.renderLoadingImage() : this.WantToVisit()}
 
-export default Profile
-
-
+export default Profile;
 
 // import React from 'react'
 // import HandlePlaceService from '../services/HandlePlaceService'
@@ -262,7 +363,7 @@ export default Profile
 //         {this.state.leyendoFull.length > 0 && this.renderLeyendo()}
 //         {this.state.porLeerFull.length > 0 && this.renderPorLeer()}
 //       </div>
-//     )    
+//     )
 //   }
 // }
 
