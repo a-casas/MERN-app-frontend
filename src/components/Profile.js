@@ -94,39 +94,65 @@ class Profile extends React.Component {
     );
   };
 
+  moveFromWantToAlready = (poi) => {
+    this.HandlePlaceService.fromWantToAlready(poi, this.props.isLogged._id)
+    .then(response => {
+      setTimeout(() => {
+        console.log(response)
+          this.setState({
+            leidos: response.leidos,
+            leyendo: response.leyendo
+          })
+        this.getFullWantToVisit()
+        this.getFullVisited()
+      },500)
+    })
+  }
+  moveFromAlreadyToWant = (poi) => {
+    this.HandlePlaceService.fromAlreadyToWant(poi, this.props.isLogged._id)
+    .then(response => {
+      setTimeout(() => {
+        console.log(response)
+          this.setState({
+            leidos: response.leidos,
+            leyendo: response.leyendo
+          })
+        this.getFullWantToVisit()
+        this.getFullVisited()
+      },500)
+    })
+  }
+
   renderWantToVisit = () => {
     return this.state.leidosFull.map((place, index) => {
       return (
-        <div key={index} class="card has-background-black">
-          <div class="card-image">
-            <figure class="image is-5by4">
-              <img
-                src={place.place.main_media.media[0].url}
-                alt={place.place.name_en}
-              />
-            </figure>
-            <p className="has-text-right mr-2">
-              <a href={place.place.main_media.media[0].attribution.title_url}>
-                Photo Attribution
-              </a>
-            </p>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content has-text-white">
-                <p class="title is-6 has-text-danger-dark">
-                  {place.place.name_local}
-                </p>
-                <p class="title is-6 has-text-white">{place.place.name_en}</p>
-                <p class="subtitle is-6 has-text-white">
-                  {place.place.name_suffix}
-                </p>
-              </div>
+        <div class="column is-2">
+          <div key={index} class="card has-background-black">
+            <div class="card-image">
+              <figure class="image is-5by4">
+                <img
+                  src={place.place.main_media.media[0].url}
+                  alt={place.place.name_en}
+                />
+              </figure>
             </div>
-            <div class="content has-text-white">
-              <div class="buttons">
-                <button class="button is-danger is-small">Delete</button>
-                <button class="button is-link is-small">Visited</button>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content has-text-white">
+                  <p class="title is-6 has-text-danger-dark">
+                    {place.place.name_local}
+                  </p>
+                  <p class="title is-6 has-text-white">{place.place.name_en}</p>
+                  <p class="subtitle is-6 has-text-white">
+                    {place.place.name_suffix}
+                  </p>
+                </div>
+              </div>
+              <div class="content has-text-white">
+                <div class="buttons">
+                  <button class="button is-danger is-small">Delete</button>
+                  <button class="button is-link is-small" onClick={() => this.moveFromWantToAlready(place.place.id)}>To Visited</button>
+                </div>
               </div>
             </div>
           </div>
@@ -138,36 +164,33 @@ class Profile extends React.Component {
   renderVisited = () => {
     return this.state.leyendoFull.map((place, index) => {
       return (
-        <div key={index} class="card has-background-black">
-          <div class="card-image">
-            <figure class="image is-5by4">
-              <img
-                src={place.place.main_media.media[0].url}
-                alt={place.place.name_en}
-              />
-            </figure>
-            <p className="has-text-right mr-2">
-              <a href={place.place.main_media.media[0].attribution.title_url}>
-                Photo Attribution
-              </a>
-            </p>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content has-text-white">
-                <p class="title is-6 has-text-danger-dark">
-                  {place.place.name_local}
-                </p>
-                <p class="title is-6 has-text-white">{place.place.name_en}</p>
-                <p class="subtitle is-6 has-text-white">
-                  {place.place.name_suffix}
-                </p>
-              </div>
+        <div class="column is-2">
+          <div key={index} class="card has-background-black">
+            <div class="card-image">
+              <figure class="image is-5by4">
+                <img
+                  src={place.place.main_media.media[0].url}
+                  alt={place.place.name_en}
+                />
+              </figure>
             </div>
-            <div class="content has-text-white">
-              <div class="buttons">
-                <button class="button is-danger is-small">Delete</button>
-                <button class="button is-link is-small">Not visited</button>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content has-text-white">
+                  <p class="title is-6 has-text-danger-dark">
+                    {place.place.name_local}
+                  </p>
+                  <p class="title is-6 has-text-white">{place.place.name_en}</p>
+                  <p class="subtitle is-6 has-text-white">
+                    {place.place.name_suffix}
+                  </p>
+                </div>
+              </div>
+              <div class="content has-text-white">
+                <div class="buttons">
+                  <button class="button is-danger is-small">Delete</button>
+                  <button class="button is-link is-small" onClick={() => this.moveFromAlreadyToWant(place.place.id)}>Not visited</button>
+                </div>
               </div>
             </div>
           </div>
@@ -179,31 +202,37 @@ class Profile extends React.Component {
   renderHotels = () => {
     return this.state.porLeerFull.map((place, index) => {
       return (
-        <div key={index} class="card has-background-black">
-          <div class="card-image">
-            <figure class="image is-5by4">
-              <img
-                src={place.place.thumbnail_url}
-                alt={place.place.name_en}
-              />
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content has-text-white">
-                <p class="title is-6 has-text-white">{place.place.name_en}</p>
-                <p class="subtitle is-6 has-text-white">
-                  {place.place.name_suffix}
-                </p>
-              </div>
+        <div class="column is-2">
+          <div key={index} class="card has-background-black">
+            <div class="card-image">
+              <figure class="image is-5by4">
+                <img
+                  src={place.place.thumbnail_url}
+                  alt={place.place.name_en}
+                />
+              </figure>
             </div>
-            <div class="content has-text-white">
-              <a class="button is-info" href={place.place.references[0].url} target="_blank">
-                Booking.com
-              </a>
-              <br />
-              <div class="buttons">
-                <button class="button is-danger is-small">Delete</button>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content has-text-white">
+                  <p class="title is-6 has-text-white">{place.place.name_en}</p>
+                  <p class="subtitle is-6 has-text-white">
+                    {place.place.name_suffix}
+                  </p>
+                </div>
+              </div>
+              <div class="content has-text-white">
+                <a
+                  class="button is-info"
+                  href={place.place.references[0].url}
+                  target="_blank"
+                >
+                  Booking.com
+                </a>
+                <br />
+                <div class="buttons">
+                  <button class="button is-danger is-small">Delete</button>
+                </div>
               </div>
             </div>
           </div>
@@ -216,28 +245,38 @@ class Profile extends React.Component {
     return (
       <div>
         <h2>Welcome, {this.props.isLogged.username}</h2>
-        <section class="hero is-medium is-primary is-bold">
+        <section class="hero is-primary is-bold">
           <div class="hero-body">
             <div class="container">
-              <div class="columns">
-                <div class="column is-2">
-                  Places I want to visit
-                  {this.state.leidosFull.length === 0
-                    ? this.renderLoadingImage()
-                    : this.renderWantToVisit()}
-                </div>
-                <div class="column is-2">
-                  Places I've already visited
-                  {this.state.leyendoFull.length === 0
-                    ? this.renderLoadingImage()
-                    : this.renderVisited()}
-                </div>
-                <div class="column is-2">
-                  Hotel booking
-                  {this.state.porLeerFull.length === 0
-                    ? this.renderLoadingImage()
-                    : this.renderHotels()}
-                </div>
+              <div>Places I want to visit</div>
+              <div class="columns is-multiline">
+                {this.state.leidosFull.length === 0
+                  ? this.renderLoadingImage()
+                  : this.renderWantToVisit()}
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="hero is-info is-bold">
+          <div class="hero-body">
+            <div class="container">
+              <div>Places I've already visited</div>
+              <div class="columns is-multiline">
+                {this.state.leyendoFull.length === 0
+                  ? this.renderLoadingImage()
+                  : this.renderVisited()}
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="hero is-primary is-bold">
+          <div class="hero-body">
+            <div class="container">
+              <div>Hotel booking</div>
+              <div class="columns is-multiline">
+                {this.state.porLeerFull.length === 0
+                  ? this.renderLoadingImage()
+                  : this.renderHotels()}
               </div>
             </div>
           </div>
