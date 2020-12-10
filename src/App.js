@@ -117,9 +117,6 @@ class App extends React.Component {
 
           <div id="navbarExampleTransparentExample" class="navbar-menu">
             <div class="navbar-start">
-              <Link class="navbar-item" to="/">
-                Home
-              </Link>
             </div>
 
             <label class="nav-toggle" for="nav-toggle-state">
@@ -132,6 +129,15 @@ class App extends React.Component {
 
             <div class="navbar-end">
               <div class="navbar-item">
+              <Link class="navbar-item" to="/">
+                Home
+              </Link>
+              <Link class="navbar-item" to="/all-places">
+                Places
+              </Link>
+              <Link class="navbar-item" to="/all-hotels">
+                Places
+              </Link>
                 <div class="field is-grouped">
                   <p class="control">
                     {!this.state.isLogged.username && (
@@ -159,7 +165,7 @@ class App extends React.Component {
                         <span class="icon">
                           <i class="fab fa-twitter"></i>
                         </span>
-                        <span>My Place planner</span>
+                        <span>Trip Planner</span>
                       </Link>
                     )}
                   </p>
@@ -266,8 +272,6 @@ class App extends React.Component {
             render={() => <Profile isLogged={this.state.isLogged} />}
           />
         )}
-        <Link to="/all-places">All Places</Link>
-        <Link to="/all-hotels">All Hotels</Link>
         <Footer />
       </div>
     );

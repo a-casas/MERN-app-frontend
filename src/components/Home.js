@@ -1,4 +1,5 @@
 import React from "react";
+import ShareLink from 'react-twitter-share-link'
 
 //Dependencias
 import { Link, Route, Redirect } from "react-router-dom";
@@ -30,12 +31,11 @@ const Home = (props) => {
               </p>
               <div class="field is-grouped mt-5">
               <div class="control">
-              <Link class="button is-primary" to="/login">
-                <span class="icon">
-                  <i class="fab fa-twitter"></i>
-                </span>
-                <span>Log In</span>
-              </Link>
+              <ShareLink text="I am planning a trip to japan using this App! Who's up?! Let me know to plan it together!" hashtags="IronHackersZergJapan,HereWeGoJapan,TravelTogueter" link='https://japantripplanner.com'>
+   {link => (
+      <a class="button is-primary" href={link} target='_blank'>Tweet it!</a>
+   )}
+</ShareLink>
               </div>
               <div class="control">
               <Link class="button is-primary" to="/login">
