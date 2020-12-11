@@ -4,182 +4,105 @@ import { Link } from "react-router-dom";
 import PlacesService from "../services/PlacesService";
 import OnePoi from "./OnePoi";
 
-
 class AllPlaces extends React.Component {
   state = {
-    whatToSee: "",  
-    editorsChoice: "",
-    hiddenGems: "",
-    japaneseArchitecture: "",
-    topTouristAttractions: "",
-    mustVisitReligiousPlaces: "",
+    whatToSee: [],
+    editorsChoice: [],
+    hiddenGems: [],
+    japaneseArchitecture: [],
+    topTouristAttractions: [],
+    mustVisitReligiousPlaces: [],
     popularShoppingPlaces: "",
     mustVisitHistoricalPlaces: "",
     mustSeeBuddhistMonuments: "",
 
-    poisWhatToSee: [], //21pois
-    poisEditorsChoice: [], //15pois
-    poisHiddenGems: [],  //9pois
-    poisJapaneseArchitecture: [], //7pois
-    poisTopTouristAttractions: [], //21pois
-    poisMustVisitReligiousPlaces: [], //21pois
-    poisPopularShoppingPlaces: [],  //16pois
-    poisMustVisitHistoricalPlaces: [], //12pois
-    poisMustSeeBuddhistMonuments: [], //16pois
+    // poisWhatToSee: [], //21pois
+    // poisEditorsChoice: [], //15pois
+    // poisHiddenGems: [],  //9pois
+    // poisJapaneseArchitecture: [], //7pois
+    // poisTopTouristAttractions: [], //21pois
+    // poisMustVisitReligiousPlaces: [], //21pois
+    // poisPopularShoppingPlaces: [],  //16pois
+    // poisMustVisitHistoricalPlaces: [], //12pois
+    // poisMustSeeBuddhistMonuments: [], //16pois
   };
   service = new PlacesService();
   componentDidMount() {
     this.service
-      .getCollections()
+      .getJapaneseArchitecturePois()
       .then((response) => {
         this.setState({
-          whatToSee: response.collections[0],
-          editorsChoice: response.collections[1],
-          hiddenGems: response.collections[3],
-          japaneseArchitecture: response.collections[4],
-          topTouristAttractions: response.collections[5],
-          mustVisitReligiousPlaces: response.collections[6],
-          popularShoppingPlaces: response.collections[7],
-          mustVisitHistoricalPlaces: response.collections[8],
-          mustSeeBuddhistMonuments: response.collections[9],
+          japaneseArchitecture: response,
         });
-        // takeWhatToSeePois();
-        // takeEditorsChoicePois();
-        // takeHiddenGemsPois();
-        takeJapaneseArchitecturePois();
-        // takeTopTouristAttractionsPois();
-        // takeMustVisitReligiousPlacesPois();
-        // takePopularShoppingPlacesPois();
-        // takeMustVisitHistoricalPlacesPois();
-        // takeMustSeeBuddhistMonumentsPois();
       })
       .catch((err) => console.error(err));
-
-    // const takeWhatToSeePois = () => {
-    //   const newArr = [];
-    //   this.state.whatToSee.place_ids.map((poi) => {
-    //     return this.service
-    //       .getPois(poi)
-    //       .then((poiResult) => {
-    //         newArr.push(poiResult);
-    //         this.setState({
-    //           poisWhatToSee: newArr,
-    //         });
-    //       })
-    //       .then(() => {
-    //         console.log(this.state.poisWhatToSee);
-    //       });
+    this.service
+      .getWhatToSeePois()
+      .then((response) => {
+        this.setState({
+          whatToSee: response,
+        });
+      })
+      .catch((err) => console.error(err));
+    this.service
+      .getEditorsChoice()
+      .then((response) => {
+        this.setState({
+          editorsChoice: response,
+        });
+      })
+      .catch((err) => console.error(err));
+    this.service
+      .getHiddenGems()
+      .then((response) => {
+        this.setState({
+          hiddenGems: response,
+        });
+      })
+      .catch((err) => console.error(err));
+    this.service
+      .getTopTouristAttractions()
+      .then((response) => {
+        this.setState({
+          topTouristAttractions: response,
+        });
+      })
+      .catch((err) => console.error(err));
+    // this.service;
+    // .getMustVisitReligiousPlaces()
+    // .then((response) => {
+    //   this.setState({
+    //     mustVisitReligiousPlaces: response,
     //   });
-    // };
-
-    // const takeEditorsChoicePois = () => {
-    //   const newArr = [];
-    //   this.state.editorsChoice.place_ids.map((poi) => {
-    //     return this.service
-    //       .getPois(poi)
-    //       .then((poiResult) => {
-    //         newArr.push(poiResult);
-    //         this.setState({
-    //           poisEditorsChoice: newArr,
-    //         });
-    //       })
-    //       .then(() => {
-    //         console.log(this.state.poisJapaneseArchitecture);
-    //       });
-    //   });
-    // };
-
-    // const takeHiddenGemsPois = () => {
-    //   const newArr = [];
-    //   this.state.hiddenGems.place_ids.map((poi) => {
-    //     return this.service
-    //       .getPois(poi)
-    //       .then((poiResult) => {
-    //         newArr.push(poiResult);
-    //         this.setState({
-    //           poisHiddenGems: newArr,
-    //         });
-    //       })
-    //       .then(() => {
-    //         console.log(this.state.poisJapaneseArchitecture);
-    //       });
-    //   });
-    // };
-
-    const takeJapaneseArchitecturePois = () => {
-      const newArr = [];
-      this.state.japaneseArchitecture.place_ids.map((poi) => {
-        return this.service
-          .getPois(poi)
-          .then((poiResult) => {
-            newArr.push(poiResult);
-            this.setState({
-              poisJapaneseArchitecture: newArr,
-            });
-          })
-          .then(() => {
-            console.log(this.state.poisJapaneseArchitecture);
-          });
-      });
-    };
+    // })
+    // .catch((err) => console.error(err));
   }
 
-  // renderWhatToSeePois = () => {
-  //   return this.state.poisWhatToSee.map((poi, index) => {
-  //     console.log(this.state.poisWhatToSee);
-  //     return (
-  //       <div class="column is-3">
-  //         <Link to={`/${this.state.whatToSee.place_ids[index]}`} key={index}>
-  //           <div class="card">
-  //             <div class="card-image">
-  //               <figure class="image is-5by4">
-  //                 <img src={poi.place.thumbnail_url} alt={poi.place.name_en} />
-  //               </figure>
-  //             </div>
-  //             <div class="card-content">
-  //               <div class="media">
-  //                 <div class="media-content">
-  //                   <p class="title is-4">{poi.place.name_local}</p>
-  //                   <p class="subtitle is-6">{poi.place.name_en}</p>
-  //                 </div>
-  //               </div>
-
-  //               <div class="content">
-  //                 <p>Region: {poi.place.name_suffix}</p>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </Link>
-  //       </div>
-  //     );
-  //   });
-  // };
-
   renderJapaneseArchitecturePois = () => {
-    return this.state.poisJapaneseArchitecture.map((poi, index) => {
-      console.log(this.state.poisJapaneseArchitecture);
+    return this.state.japaneseArchitecture.places.map((poi, index) => {
+      console.log(this.state.japaneseArchitecture.places);
       return (
         <div class="column is-3">
           <Link
-            to={`/all-places/${this.state.japaneseArchitecture.place_ids[index]}`}
+            to={`/all-places/${this.state.japaneseArchitecture.places[index].id}`}
             key={index}
           >
             <div class="card">
               <div class="card-image">
                 <figure class="image is-5by4">
-                  <img src={poi.place.thumbnail_url} alt={poi.place.name_en} />
+                  <img src={poi.thumbnail_url} alt={poi.name_en} />
                 </figure>
               </div>
               <div class="card-content">
                 <div class="media">
                   <div class="media-content">
-                    <p class="title is-4">{poi.place.name_local}</p>
-                    <p class="subtitle is-6">{poi.place.name_en}</p>
+                    <p class="title is-4">{poi.name_local}</p>
+                    <p class="subtitle is-6">{poi.name_en}</p>
                   </div>
                 </div>
 
                 <div class="content">
-                  <p>Region: {poi.place.name_suffix}</p>
+                  <p>Region: {poi.name_suffix}</p>
                 </div>
               </div>
             </div>
@@ -189,13 +112,52 @@ class AllPlaces extends React.Component {
       );
     });
   };
+
+  renderWhatToSeePois = () => {
+    return this.state.whatToSee.places.map((poi, index) => {
+      console.log(this.state.whatToSee.places);
+      return (
+        <div class="column is-3">
+          <Link
+            to={`/all-places/${this.state.whatToSee.places[index].id}`}
+            key={index}
+          >
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-5by4">
+                  <img src={poi.thumbnail_url} alt={poi.name_en} />
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">{poi.name_local}</p>
+                    <p class="subtitle is-6">{poi.name_en}</p>
+                  </div>
+                </div>
+
+                <div class="content">
+                  <p>Region: {poi.name_suffix}</p>
+                </div>
+              </div>
+            </div>
+            {/* <div> <OnePoi stateTransfer = {this.state.poisJapaneseArchitecture}/></div> */}
+          </Link>
+        </div>
+      );
+    });
+  };
+
+
   renderLoadingImage = () => {
     return (
       // <img
       //   src="https://psychiatryonline.org/specs/ux3/releasedAssets/images/spinner.gif"
       //   alt="Loading"
       // />
-      <progress class="progress is-large is-info mt-5" max="100">60%</progress>
+      <progress class="progress is-large is-info mt-5" max="100">
+        60%
+      </progress>
     );
   };
   render() {
@@ -205,12 +167,12 @@ class AllPlaces extends React.Component {
           <div class="container has-text-centered">
             {/* <h1>{this.state.japaneseArchitecture.name_long}</h1> */}
             <div class="columns is-multiline">
-              {this.state.poisJapaneseArchitecture.length === 0
+              {this.state.japaneseArchitecture.length === 0
                 ? this.renderLoadingImage()
                 : this.renderJapaneseArchitecturePois()}
-              {/* {this.state.poisWhatToSee.length === 0
+              {this.state.whatToSee.length === 0
                 ? this.renderLoadingImage()
-                : this.renderWhatToSeePois()} */}
+                : this.renderWhatToSeePois()}
             </div>
           </div>
         </div>
