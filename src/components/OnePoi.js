@@ -70,10 +70,11 @@ class OnePoi extends Component {
   };
   renderLoadingImage = () => {
     return (
-      <img
-        src="https://psychiatryonline.org/specs/ux3/releasedAssets/images/spinner.gif"
-        alt="Loading"
-      />
+      // <img
+      //   src="https://psychiatryonline.org/specs/ux3/releasedAssets/images/spinner.gif"
+      //   alt="Loading"
+      // />
+      <progress class="progress is-large is-info mt-5" max="100">60%</progress>
     );
   };
   renderPoi = () => {

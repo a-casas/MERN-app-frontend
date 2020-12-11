@@ -1,4 +1,5 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const LogIn = (props) => {
@@ -71,7 +72,8 @@ const LogIn = (props) => {
                       </div>
                     </div>
                     <button class="button is-primary" type="submit">
-                      Log In
+                    <FontAwesomeIcon icon="sign-in-alt"/>
+                        <span>&nbsp;Log In</span>
                     </button>
                   </form>
                 </div>

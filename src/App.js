@@ -12,10 +12,18 @@ import Profile from "./components/Profile";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
+
 //Dependencias
 import { Link, Route, Redirect } from "react-router-dom";
 import UserService from "./services/UserService";
 import OnePoi from "./components/OnePoi";
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faCoffee, faUser, faUserPlus, faRoute, faSignInAlt, faSignOutAlt, faHome, faMapMarkerAlt, faHSquare, faTimes, faArrowsAltH } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+library.add(fab, faCheckSquare, faCoffee, faUser, faUserPlus, faRoute, faSignInAlt, faSignOutAlt, faHome, faMapMarkerAlt, faHSquare, faTimes, faArrowsAltH)
 
 class App extends React.Component {
   state = {
@@ -130,42 +138,39 @@ class App extends React.Component {
             <div class="navbar-end">
               <div class="navbar-item">
               <Link class="navbar-item" to="/">
-                Home
+              <FontAwesomeIcon icon="home"/>
+              <span>&nbsp;Home</span>
               </Link>
               <Link class="navbar-item" to="/all-places">
-                Places
+              <FontAwesomeIcon icon="map-marker-alt"/>
+              <span>&nbsp;Places</span>
               </Link>
               <Link class="navbar-item" to="/all-hotels">
-                Places
+              <FontAwesomeIcon icon="h-square"/>
+              <span>&nbsp;Places</span>
               </Link>
                 <div class="field is-grouped">
                   <p class="control">
                     {!this.state.isLogged.username && (
-                      <Link class="button is-primary" to="/signup">
-                        <span class="icon">
-                          <i class="fab fa-twitter"></i>
-                        </span>
-                        <span>Sign Up</span>
+                      <Link class="button is-success" to="/signup">
+                      <FontAwesomeIcon icon="user-plus"/>
+                        <span>&nbsp;Sign Up</span>
                       </Link>
                     )}
                   </p>
                   <p class="control">
                     {!this.state.isLogged.username && (
                       <Link class="button is-primary" to="/login">
-                        <span class="icon">
-                          <i class="fab fa-twitter"></i>
-                        </span>
-                        <span>Log In</span>
+                      <FontAwesomeIcon icon="sign-in-alt"/>
+                        <span>&nbsp;Log In</span>
                       </Link>
                     )}
                   </p>
                   <p class="control">
                     {this.state.isLogged.username && (
-                      <Link class="button is-primary" to="/profile">
-                        <span class="icon">
-                          <i class="fab fa-twitter"></i>
-                        </span>
-                        <span>Trip Planner</span>
+                      <Link class="button is-black" to="/profile">
+                      <FontAwesomeIcon icon="route"/>
+                        <span>&nbsp;&nbsp;Trip Planner</span>
                       </Link>
                     )}
                   </p>
@@ -175,10 +180,8 @@ class App extends React.Component {
                         class="button is-primary"
                         onClick={() => this.logOut()}
                       >
-                        <span class="icon">
-                          <i class="fab fa-twitter"></i>
-                        </span>
-                        <span>Log Out</span>
+                        <FontAwesomeIcon icon="sign-out-alt"/>
+                        <span>&nbsp;Log Out</span>
                       </button>
                     )}
                   </p>
