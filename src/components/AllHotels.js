@@ -7,7 +7,7 @@ import OnePoi from "./OnePoi";
 class AllHotels extends React.Component {
 
     state = {
-        hotels: ""
+        hotels: []
     }
 
 service = new PlacesService();

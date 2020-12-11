@@ -27,14 +27,35 @@ class HandlePlaceService {
   }
   fromWantToAlready = (poi, userID) => {
     return this.service.post('/poi/from-wantToVisit', {poi, userID})
-    .then(response => {
+    .then(result => {
       return this.service.get(`/getUser/${userID}`, {userID})
       .then(response => response.data)
     })
   }
   fromAlreadyToWant = (poi, userID) => {
     return this.service.post('/poi/from-alreadyVisited', {poi, userID})
-    .then(response => {
+    .then(result => {
+      return this.service.get(`/getUser/${userID}`, {userID})
+      .then(response => response.data)
+    })
+  }
+  deleteFromWantToVisit = (poi, userID) => {
+    return this.service.post(`/poi/from-want-to-visit/delete/${poi}`, {userID})
+    .then(result => {
+      return this.service.get(`/getUser/${userID}`, {userID})
+      .then(response => response.data)
+    })
+  }
+  deleteFromVisited = (poi, userID) => {
+    return this.service.post(`/poi/from-visited/delete/${poi}`, {userID})
+    .then(result => {
+      return this.service.get(`/getUser/${userID}`, {userID})
+      .then(response => response.data)
+    })
+  }
+  deleteHotel = (hotel, userID) => {
+    return this.service.post(`/poi/hotel/delete/${hotel}`, {userID})
+    .then(result => {
       return this.service.get(`/getUser/${userID}`, {userID})
       .then(response => response.data)
     })

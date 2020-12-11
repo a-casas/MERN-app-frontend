@@ -131,6 +131,43 @@ class Profile extends React.Component {
     });
   };
 
+  deleteFromWantToVisit = (poi) => {
+    this.HandlePlaceService
+      .deleteFromWantToVisit(poi, this.props.isLogged._id)
+      .then(response => {
+        setTimeout(() => {
+          this.setState({
+            wantToVisit: response.wantToVisit,
+          })
+          this.getFullWantToVisit()
+        },200)
+      })
+  }
+  deleteFromVisited = (poi) => {
+    this.HandlePlaceService
+      .deleteFromVisited(poi, this.props.isLogged._id)
+      .then(response => {
+        setTimeout(() => {
+          this.setState({
+            alreadyVisited: response.alreadyVisited,
+          })
+          this.getFullVisited()
+        },200)
+      })
+  }
+  deleteHotel = (hotel) => {
+    this.HandlePlaceService
+      .deleteHotel(hotel, this.props.isLogged._id)
+      .then(response => {
+        setTimeout(() => {
+          this.setState({
+            hotelsBooking: response.hotelsBooking,
+          })
+          this.getFullHotels()
+        },200)
+      })
+  }
+
   renderWantToVisit = () => {
     return this.state.wantToVisitFull.map((place, index) => {
       return (
@@ -158,7 +195,7 @@ class Profile extends React.Component {
               </div>
               <div class="content has-text-white">
                 <div class="buttons">
-                  <button class="button is-danger is-small">
+                  <button class="button is-danger is-small" onClick={() => this.deleteFromWantToVisit(place.place.id)} >
                     <FontAwesomeIcon icon="times" />
                     <span>&nbsp;Delete</span>
                   </button>
@@ -205,7 +242,7 @@ class Profile extends React.Component {
               </div>
               <div class="content has-text-white">
                 <div class="buttons">
-                  <button class="button is-danger is-small">
+                  <button class="button is-danger is-small" onClick={()=> this.deleteFromVisited(place.place.id)}>
                     <FontAwesomeIcon icon="times" />
                     <span>&nbsp;Delete</span>
                   </button>
@@ -257,7 +294,7 @@ class Profile extends React.Component {
                 </a>
                 <br />
                 <div class="buttons">
-                  <button class="button is-danger is-small">
+                  <button class="button is-danger is-small" onClick={() => this.deleteHotel(place.place.id)} >
                     <FontAwesomeIcon icon="times" />
                     <span>&nbsp;Delete</span>
                   </button>
@@ -270,11 +307,19 @@ class Profile extends React.Component {
     });
   };
 
+  getAllPois = () => {
+    const newArr = [...this.state.wantToVisit]
+    const poiString = newArr.join(',')
+    const url = `https://travel.sygic.com/widget/#/?guids=${poiString}&unscrollable&unclickable&lang=en`
+    return url
+  }
+
   render() {
     return (
       <div>
       <h2>Welcome, {this.props.isLogged.username}</h2>
-      <div>{this.state.wantToVisit.map(wantToVisit => <div key={wantToVisit}> {wantToVisit} </div>)}</div>
+      <div>{this.state.wantToVisit.map(wantToVisit =>  <div key={wantToVisit}> {wantToVisit} </div>)}</div>
+
       <section class="hero is-bold">
           <div class="hero-body">
             <div class="container">
@@ -287,7 +332,7 @@ class Profile extends React.Component {
                   : this.renderWantToVisit()}
             </div>
             <iframe
-          src="https://travel.sygic.com/widget/#/?guids=poi:19822,poi:19967,poi:19820,poi:22726,poi:19841,poi:48608,poi:26909,poi:43300,poi:5249835,poi:36922040,poi:26931,poi:48611,poi:26858,poi:26915,poi:50724,poi:50833,poi:62931,poi:7889929,poi:5097628,poi:7780061,poi:62936&unscrollable&unclickable&lang=en"
+          src={this.getAllPois()}
           width="100%"
           height="300"
           // onLoad={this.hideSpinner}
