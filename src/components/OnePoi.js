@@ -16,9 +16,9 @@ class OnePoi extends Component {
       });
     });
   }
-  addToLeidos = () => {
+  addToWantToVisit = () => {
     this.HandlePlaceService
-      .leidos(this.props.match.params.id, this.props.isLogged._id)
+      .wantToVisit(this.props.match.params.id, this.props.isLogged._id)
       .then((result) => {
         console.log(result);
       })
@@ -26,9 +26,9 @@ class OnePoi extends Component {
         console.log(err);
       });
   };
-  addToLeyendo = () => {
+  addToAlreadyVisited = () => {
     this.HandlePlaceService
-      .leyendo(this.props.match.params.id, this.props.isLogged._id)
+      .alreadyVisited(this.props.match.params.id, this.props.isLogged._id)
       .then((result) => {
         console.log(result);
       })
@@ -36,9 +36,9 @@ class OnePoi extends Component {
         console.log(err);
       });
   };
-  addToPorLeer = () => {
+  addToHotelsBooking = () => {
     this.HandlePlaceService
-      .porLeer(this.props.match.params.id, this.props.isLogged._id)
+      .hotelsBooking(this.props.match.params.id, this.props.isLogged._id)
       .then((result) => {
         console.log(result);
       })
@@ -50,9 +50,9 @@ class OnePoi extends Component {
     if (this.props.isLogged.username) {
       return (
         <div>
-          <button onClick={() => this.addToLeidos()}>Añadir a LEIDOS</button>
-          <button onClick={() => this.addToLeyendo()}>Añadir a LEYENDO</button>
-          <button onClick={() => this.addToPorLeer()}>Añadir a POR LEER</button>
+          <button onClick={() => this.addToWantToVisit()}>Añadir a LEIDOS</button>
+          <button onClick={() => this.addToAlreadyVisited()}>Añadir a LEYENDO</button>
+          <button onClick={() => this.addToHotelsBooking()}>Añadir a POR LEER</button>
         </div>
       );
     } else {

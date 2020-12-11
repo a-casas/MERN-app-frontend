@@ -9,16 +9,16 @@ class HandlePlaceService {
     });
     this.service = service;
   }
-  leidos = (mangaID, userID) => {
-    return this.service.post("/leidos", {mangaID, userID})
+  wantToVisit = (mangaID, userID) => {
+    return this.service.post("/wantToVisit", {mangaID, userID})
     .then(response => response.data)
   }
-  leyendo = (mangaID, userID) => {
-    return this.service.post("/leyendo", {mangaID, userID})
+  alreadyVisited = (mangaID, userID) => {
+    return this.service.post("/alreadyVisited", {mangaID, userID})
     .then(response => response.data)
   }
-  porLeer = (mangaID, userID) => {
-    return this.service.post("/porLeer", {mangaID, userID})
+  hotelsBooking = (mangaID, userID) => {
+    return this.service.post("/hotelsBooking", {mangaID, userID})
     .then(response => response.data)
   }
   getUser = (userID) => {
@@ -26,14 +26,14 @@ class HandlePlaceService {
     .then(response => response.data)
   }
   fromWantToAlready = (poi, userID) => {
-    return this.service.post('/poi/from-leidos', {poi, userID})
+    return this.service.post('/poi/from-wantToVisit', {poi, userID})
     .then(response => {
       return this.service.get(`/getUser/${userID}`, {userID})
       .then(response => response.data)
     })
   }
   fromAlreadyToWant = (poi, userID) => {
-    return this.service.post('/poi/from-leyendo', {poi, userID})
+    return this.service.post('/poi/from-alreadyVisited', {poi, userID})
     .then(response => {
       return this.service.get(`/getUser/${userID}`, {userID})
       .then(response => response.data)

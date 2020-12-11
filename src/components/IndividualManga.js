@@ -12,8 +12,8 @@ class IndividualManga extends React.Component{
 
   service = new HandlePlaceService()
 
-  addToLeidos = ()=>{
-    this.service.leidos(this.props.match.params.id, this.props.isLogged._id)
+  addToWantToVisit = ()=>{
+    this.service.wantToVisit(this.props.match.params.id, this.props.isLogged._id)
     .then((result) => {
       console.log(result);
     })
@@ -22,8 +22,8 @@ class IndividualManga extends React.Component{
     });
   }
 
-  addToLeyendo = ()=>{
-    this.service.leyendo(this.props.match.params.id, this.props.isLogged._id)
+  addToAlreadyVisited = ()=>{
+    this.service.alreadyVisited(this.props.match.params.id, this.props.isLogged._id)
     .then((result) => {
       console.log(result);
     })
@@ -32,8 +32,8 @@ class IndividualManga extends React.Component{
     });
   }
 
-  addToPorLeer = ()=>{
-    this.service.porLeer(this.props.match.params.id, this.props.isLogged._id)
+  addToHotelsBooking = ()=>{
+    this.service.hotelsBooking(this.props.match.params.id, this.props.isLogged._id)
     .then((result) => {
       console.log(result);
     })
@@ -46,9 +46,9 @@ class IndividualManga extends React.Component{
     if(this.props.isLogged.username){
       return(
         <div>
-          <button onClick={()=>this.addToLeidos()}>Añadir a LEIDOS</button>
-          <button onClick={()=>this.addToLeyendo()}>Añadir a LEYENDO</button>
-          <button onClick={()=>this.addToPorLeer()}>Añadir a POR LEER</button>          
+          <button onClick={()=>this.addToWantToVisit()}>Añadir a LEIDOS</button>
+          <button onClick={()=>this.addToAlreadyVisited()}>Añadir a LEYENDO</button>
+          <button onClick={()=>this.addToHotelsBooking()}>Añadir a POR LEER</button>          
         </div>
       )
     } else {
@@ -105,8 +105,8 @@ export default IndividualManga
 
 //   service = new HandlePlaceService()
 
-//   addToLeidos = ()=>{
-//     this.service.leidos(this.props.match.params.id, this.props.isLogged._id)
+//   addToWantToVisit = ()=>{
+//     this.service.wantToVisit(this.props.match.params.id, this.props.isLogged._id)
 //     .then((result) => {
 //       console.log(result);
 //     })
@@ -115,8 +115,8 @@ export default IndividualManga
 //     });
 //   }
 
-//   addToLeyendo = ()=>{
-//     this.service.leyendo(this.props.match.params.id, this.props.isLogged._id)
+//   addToAlreadyVisited = ()=>{
+//     this.service.alreadyVisited(this.props.match.params.id, this.props.isLogged._id)
 //     .then((result) => {
 //       console.log(result);
 //     })
@@ -125,8 +125,8 @@ export default IndividualManga
 //     });
 //   }
 
-//   addToPorLeer = ()=>{
-//     this.service.porLeer(this.props.match.params.id, this.props.isLogged._id)
+//   addToHotelsBooking = ()=>{
+//     this.service.hotelsBooking(this.props.match.params.id, this.props.isLogged._id)
 //     .then((result) => {
 //       console.log(result);
 //     })
@@ -139,9 +139,9 @@ export default IndividualManga
 //     if(this.props.isLogged.username){
 //       return(
 //         <div>
-//           <button onClick={()=>this.addToLeidos()}>Añadir a LEIDOS</button>
-//           <button onClick={()=>this.addToLeyendo()}>Añadir a LEYENDO</button>
-//           <button onClick={()=>this.addToPorLeer()}>Añadir a POR LEER</button>          
+//           <button onClick={()=>this.addToWantToVisit()}>Añadir a LEIDOS</button>
+//           <button onClick={()=>this.addToAlreadyVisited()}>Añadir a LEYENDO</button>
+//           <button onClick={()=>this.addToHotelsBooking()}>Añadir a POR LEER</button>          
 //         </div>
 //       )
 //     } else {

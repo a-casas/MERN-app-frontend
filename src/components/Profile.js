@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Profile extends React.Component {
   state = {
-    leidos: [],
-    leidosFull: [],
-    leyendo: [],
-    leyendoFull: [],
-    porLeer: [],
-    porLeerFull: [],
+    wantToVisit: [],
+    wantToVisitFull: [],
+    alreadyVisited: [],
+    alreadyVisitedFull: [],
+    hotelsBooking: [],
+    hotelsBookingFull: [],
   };
 
   HandlePlaceService = new HandlePlaceService();
@@ -20,9 +20,9 @@ class Profile extends React.Component {
     this.HandlePlaceService.getUser(this.props.isLogged._id)
       .then((response) => {
         this.setState({
-          leidos: [...response.leidos],
-          leyendo: [...response.leyendo],
-          porLeer: [...response.porLeer],
+          wantToVisit: [...response.wantToVisit],
+          alreadyVisited: [...response.alreadyVisited],
+          hotelsBooking: [...response.hotelsBooking],
         });
         this.getFullWantToVisit();
         this.getFullVisited();
@@ -32,8 +32,8 @@ class Profile extends React.Component {
         console.log(err);
       });
   }
-  // getFullLeidos = ()=>{
-  //       const prueba = this.state.leidos.map((_id)=>{
+  // getFullWantToVisit = ()=>{
+  //       const prueba = this.state.wantToVisit.map((_id)=>{
 
   //         return fetch(`https://api.jikan.moe/v3/place/${_id}`)
   //         .then((data)=>{
@@ -46,17 +46,17 @@ class Profile extends React.Component {
 
   //       Promise.all(prueba)
   //       .then((result)=>{
-  //         this.setState({leidosFull : result})
+  //         this.setState({wantToVisitFull : result})
   //       })
   //     }
 
   getFullWantToVisit = () => {
     const newArr = [];
-    this.state.leidos.map((poi) => {
+    this.state.wantToVisit.map((poi) => {
       return this.service.getPois(poi).then((poiResult) => {
         newArr.push(poiResult);
         this.setState({
-          leidosFull: newArr,
+          wantToVisitFull: newArr,
         });
       });
     });
@@ -64,11 +64,11 @@ class Profile extends React.Component {
 
   getFullVisited = () => {
     const newArr = [];
-    this.state.leyendo.map((poi) => {
+    this.state.alreadyVisited.map((poi) => {
       return this.service.getPois(poi).then((poiResult) => {
         newArr.push(poiResult);
         this.setState({
-          leyendoFull: newArr,
+          alreadyVisitedFull: newArr,
         });
       });
     });
@@ -76,11 +76,11 @@ class Profile extends React.Component {
 
   getFullHotels = () => {
     const newArr = [];
-    this.state.porLeer.map((poi) => {
+    this.state.hotelsBooking.map((poi) => {
       return this.service.getPois(poi).then((poiResult) => {
         newArr.push(poiResult);
         this.setState({
-          porLeerFull: newArr,
+          hotelsBookingFull: newArr,
         });
       });
     });
@@ -106,8 +106,8 @@ class Profile extends React.Component {
       setTimeout(() => {
         console.log(response);
         this.setState({
-          leidos: response.leidos,
-          leyendo: response.leyendo,
+          wantToVisit: response.wantToVisit,
+          alreadyVisited: response.alreadyVisited,
         });
         this.getFullWantToVisit();
         this.getFullVisited();
@@ -122,8 +122,8 @@ class Profile extends React.Component {
       setTimeout(() => {
         console.log(response);
         this.setState({
-          leidos: response.leidos,
-          leyendo: response.leyendo,
+          wantToVisit: response.wantToVisit,
+          alreadyVisited: response.alreadyVisited,
         });
         this.getFullWantToVisit();
         this.getFullVisited();
@@ -132,7 +132,7 @@ class Profile extends React.Component {
   };
 
   renderWantToVisit = () => {
-    return this.state.leidosFull.map((place, index) => {
+    return this.state.wantToVisitFull.map((place, index) => {
       return (
         <div class="column is-one-third">
           <div key={index} class="card has-background-black">
@@ -179,7 +179,7 @@ class Profile extends React.Component {
   };
 
   renderVisited = () => {
-    return this.state.leyendoFull.map((place, index) => {
+    return this.state.alreadyVisitedFull.map((place, index) => {
       return (
         <div class="column is-one-third">
           <div key={index} class="card has-background-black">
@@ -226,7 +226,7 @@ class Profile extends React.Component {
   };
 
   renderHotels = () => {
-    return this.state.porLeerFull.map((place, index) => {
+    return this.state.hotelsBookingFull.map((place, index) => {
       return (
         <div class="column is-one-third">
           <div key={index} class="card has-background-black">
@@ -281,7 +281,7 @@ class Profile extends React.Component {
           <div class="column is-two-fifths has-background-grey-lighter is-offset-1">
             <p class="title is-6">The places I plan to visit</p>
             <div class="columns is-multiline">
-            {this.state.leidosFull.length === 0
+            {this.state.wantToVisitFull.length === 0
                   ? this.renderLoadingImage()
                   : this.renderWantToVisit()}
             </div>
@@ -289,7 +289,7 @@ class Profile extends React.Component {
           <div class="column is-two-fifths has-background-grey-lighter is-offset-1">
             <p class="title is-6">Already visited places</p>
             <div class="columns is-multiline">
-            {this.state.leyendoFull.length === 0
+            {this.state.alreadyVisitedFull.length === 0
                   ? this.renderLoadingImage()
                   : this.renderVisited()}
             </div>
@@ -306,7 +306,7 @@ class Profile extends React.Component {
           <div class="column is-two-fifths has-background-info is-offset-1">
             <p class="title is-6">Hotels Booking</p>
             <div class="columns is-multiline">
-            {this.state.porLeerFull.length === 0
+            {this.state.hotelsBookingFull.length === 0
                   ? this.renderLoadingImage()
                   : this.renderHotels()}
             </div>
@@ -328,7 +328,7 @@ class Profile extends React.Component {
             <div class="container">
               <div>Places I want to visit</div>
               <div class="columns is-multiline">
-                {this.state.leidosFull.length === 0
+                {this.state.wantToVisitFull.length === 0
                   ? this.renderLoadingImage()
                   : this.renderWantToVisit()}
               </div>
@@ -340,7 +340,7 @@ class Profile extends React.Component {
             <div class="container">
               <div>Places I've already visited</div>
               <div class="columns is-multiline">
-                {this.state.leyendoFull.length === 0
+                {this.state.alreadyVisitedFull.length === 0
                   ? this.renderLoadingImage()
                   : this.renderVisited()}
               </div>
@@ -352,7 +352,7 @@ class Profile extends React.Component {
             <div class="container">
               <div>Hotel booking</div>
               <div class="columns is-multiline">
-                {this.state.porLeerFull.length === 0
+                {this.state.hotelsBookingFull.length === 0
                   ? this.renderLoadingImage()
                   : this.renderHotels()}
               </div>
@@ -364,7 +364,7 @@ class Profile extends React.Component {
   }
 }
 
-// {this.state.leidosFull === "" ? this.renderLoadingImage() : this.WantToVisit()}
+// {this.state.wantToVisitFull === "" ? this.renderLoadingImage() : this.WantToVisit()}
 
 export default Profile;
 
@@ -374,12 +374,12 @@ export default Profile;
 // class Profile extends React.Component{
 
 //   state = {
-//     leidos: [],
-//     leidosFull: [],
-//     leyendo: [],
-//     leyendoFull: [],
-//     porLeer: [],
-//     porLeerFull: []
+//     wantToVisit: [],
+//     wantToVisitFull: [],
+//     alreadyVisited: [],
+//     alreadyVisitedFull: [],
+//     hotelsBooking: [],
+//     hotelsBookingFull: []
 //   }
 
 //   service = new HandlePlaceService()
@@ -387,18 +387,18 @@ export default Profile;
 //   componentDidMount(){
 //     this.service.getUser(this.props.isLogged._id)
 //     .then((response)=>{
-//       this.setState({leidos: [...response.leidos], leyendo: [...response.leyendo], porLeer: [...response.porLeer]})
-//       this.getFullLeidos()
-//       this.getFullLeyendo()
-//       this.getFullPorLeer()
+//       this.setState({wantToVisit: [...response.wantToVisit], alreadyVisited: [...response.alreadyVisited], hotelsBooking: [...response.hotelsBooking]})
+//       this.getFullWantToVisit()
+//       this.getFullAlreadyVisited()
+//       this.getFullHotelsBooking()
 //     })
 //     .catch((err)=>{
 //       console.log(err)
 //     })
 //   }
 
-//   getFullLeidos = ()=>{
-//     const prueba = this.state.leidos.map((_id)=>{
+//   getFullWantToVisit = ()=>{
+//     const prueba = this.state.wantToVisit.map((_id)=>{
 
 //       return fetch(`https://api.jikan.moe/v3/place/${_id}`)
 //       .then((data)=>{
@@ -411,12 +411,12 @@ export default Profile;
 
 //     Promise.all(prueba)
 //     .then((result)=>{
-//       this.setState({leidosFull : result})
+//       this.setState({wantToVisitFull : result})
 //     })
 //   }
 
-//   getFullLeyendo = ()=>{
-//     const prueba = this.state.leyendo.map((_id)=>{
+//   getFullAlreadyVisited = ()=>{
+//     const prueba = this.state.alreadyVisited.map((_id)=>{
 
 //       return fetch(`https://api.jikan.moe/v3/place/${_id}`)
 //       .then((data)=>{
@@ -429,12 +429,12 @@ export default Profile;
 
 //     Promise.all(prueba)
 //     .then((result)=>{
-//       this.setState({leyendoFull : result})
+//       this.setState({alreadyVisitedFull : result})
 //     })
 //   }
 
-//   getFullPorLeer = ()=>{
-//     const prueba = this.state.porLeer.map((_id)=>{
+//   getFullHotelsBooking = ()=>{
+//     const prueba = this.state.hotelsBooking.map((_id)=>{
 
 //       return fetch(`https://api.jikan.moe/v3/place/${_id}`)
 //       .then((data)=>{
@@ -447,27 +447,27 @@ export default Profile;
 
 //     Promise.all(prueba)
 //     .then((result)=>{
-//       this.setState({porLeerFull : result})
+//       this.setState({hotelsBookingFull : result})
 //     })
 //   }
 
-//   renderLeidos = ()=>{
+//   renderWantToVisit = ()=>{
 
-//     return this.state.leidosFull.map((place)=>{
+//     return this.state.wantToVisitFull.map((place)=>{
 //       return <h3>{place.title_japanese}</h3>
 //     })
 //   }
 
-//   renderLeyendo = ()=>{
+//   renderAlreadyVisited = ()=>{
 
-//     return this.state.leyendoFull.map((place)=>{
+//     return this.state.alreadyVisitedFull.map((place)=>{
 //       return <h3>{place.title_japanese}</h3>
 //     })
 //   }
 
-//   renderPorLeer = ()=>{
+//   renderHotelsBooking = ()=>{
 
-//     return this.state.porLeerFull.map((place)=>{
+//     return this.state.hotelsBookingFull.map((place)=>{
 //       return <h3>{place.title_japanese}</h3>
 //     })
 //   }
@@ -476,9 +476,9 @@ export default Profile;
 //     return(
 //       <div>
 //         <h2>Welcome, {this.props.isLogged.username}</h2>
-//         {this.state.leidosFull.length > 0 && this.renderLeidos()}
-//         {this.state.leyendoFull.length > 0 && this.renderLeyendo()}
-//         {this.state.porLeerFull.length > 0 && this.renderPorLeer()}
+//         {this.state.wantToVisitFull.length > 0 && this.renderWantToVisit()}
+//         {this.state.alreadyVisitedFull.length > 0 && this.renderAlreadyVisited()}
+//         {this.state.hotelsBookingFull.length > 0 && this.renderHotelsBooking()}
 //       </div>
 //     )
 //   }
