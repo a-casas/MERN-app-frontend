@@ -20,10 +20,10 @@ import OnePoi from "./components/OnePoi";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee, faUser, faUserPlus, faRoute, faSignInAlt, faSignOutAlt, faHome, faMapMarkerAlt, faHSquare, faTimes, faArrowsAltH } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faUserPlus, faRoute, faSignInAlt, faSignOutAlt, faHome, faMapMarkerAlt, faHSquare, faTimes, faArrowsAltH, faLayerGroup, faSearchLocation } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-library.add(fab, faCheckSquare, faCoffee, faUser, faUserPlus, faRoute, faSignInAlt, faSignOutAlt, faHome, faMapMarkerAlt, faHSquare, faTimes, faArrowsAltH)
+library.add(fab, faUser, faUserPlus, faRoute, faSignInAlt, faSignOutAlt, faHome, faMapMarkerAlt, faHSquare, faTimes, faArrowsAltH, faLayerGroup, faSearchLocation )
 
 class App extends React.Component {
   state = {

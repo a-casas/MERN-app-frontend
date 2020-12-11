@@ -324,7 +324,7 @@ class Profile extends React.Component {
           <div class="hero-body">
             <div class="container">
         <div class="columns">
-          <div class="column is-two-fifths has-background-grey-lighter is-offset-1">
+          <div class="column is-half has-background-grey-lighter">
             <p class="title is-6">The places I plan to visit</p>
             <div class="columns is-multiline">
             {this.state.wantToVisitFull.length === 0
@@ -339,7 +339,7 @@ class Profile extends React.Component {
           sandbox
         ></iframe>
           </div>
-          <div class="column is-two-fifths has-background-grey-lighter is-offset-1">
+          <div class="column is-half has-background-grey-lighter">
             <p class="title is-6">Already visited places</p>
             <div class="columns is-multiline">
             {this.state.alreadyVisitedFull.length === 0

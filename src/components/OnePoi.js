@@ -50,9 +50,9 @@ class OnePoi extends Component {
     if (this.props.isLogged.username) {
       return (
         <div>
-          <button onClick={() => this.addToWantToVisit()}>Añadir a LEIDOS</button>
-          <button onClick={() => this.addToAlreadyVisited()}>Añadir a LEYENDO</button>
-          <button onClick={() => this.addToHotelsBooking()}>Añadir a POR LEER</button>
+          <button onClick={() => this.addToWantToVisit()}>Want to visit</button>
+          <button onClick={() => this.addToAlreadyVisited()}>Already Visited</button>
+          {/* <button onClick={() => this.addToHotelsBooking()}>Add to Booking</button> */}
         </div>
       );
     } else {
