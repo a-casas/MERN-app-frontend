@@ -274,6 +274,7 @@ class Profile extends React.Component {
     return (
       <div>
       <h2>Welcome, {this.props.isLogged.username}</h2>
+      <div>{this.state.wantToVisit.map(wantToVisit => <div key={wantToVisit}> {wantToVisit} </div>)}</div>
       <section class="hero is-bold">
           <div class="hero-body">
             <div class="container">
@@ -285,6 +286,13 @@ class Profile extends React.Component {
                   ? this.renderLoadingImage()
                   : this.renderWantToVisit()}
             </div>
+            <iframe
+          src="https://travel.sygic.com/widget/#/?guids=poi:19822,poi:19967,poi:19820,poi:22726,poi:19841,poi:48608,poi:26909,poi:43300,poi:5249835,poi:36922040,poi:26931,poi:48611,poi:26858,poi:26915,poi:50724,poi:50833,poi:62931,poi:7889929,poi:5097628,poi:7780061,poi:62936&unscrollable&unclickable&lang=en"
+          width="100%"
+          height="300"
+          // onLoad={this.hideSpinner}
+          sandbox
+        ></iframe>
           </div>
           <div class="column is-two-fifths has-background-grey-lighter is-offset-1">
             <p class="title is-6">Already visited places</p>
@@ -293,6 +301,13 @@ class Profile extends React.Component {
                   ? this.renderLoadingImage()
                   : this.renderVisited()}
             </div>
+            <iframe
+          src="https://travel.sygic.com/widget/#/?guids=poi:19822,poi:19967,poi:19820,poi:22726,poi:19841,poi:48608,poi:26909,poi:43300,poi:5249835,poi:36922040,poi:26931,poi:48611,poi:26858,poi:26915,poi:50724,poi:50833,poi:62931,poi:7889929,poi:5097628,poi:7780061,poi:62936&unscrollable&unclickable&lang=en"
+          width="100%"
+          height="300"
+          // onLoad={this.hideSpinner}
+          sandbox
+        ></iframe>
           </div>
         </div>
 </div>
