@@ -1,12 +1,73 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link, Route, Redirect } from "react-router-dom";
 
 
 const LogIn = (props) => {
   // const {submitLogIn, loggingUser, changeHandlerLogIn} = props
+  const scrollToTop = () => {
+    document.body.scrollTop = 0
+  }
   return (
     <div>
-      <section class="hero is-medium login-bg">
+    {scrollToTop()}
+     <section id="login-bg" class="hero is-large">
+      <div class="hero-body">
+      <div class="container has-text-centered">
+      <div class="columns is-centered">
+      <div class="column is-4">
+        <div class="embossed-login-box">
+          {/* <img src={jAPPlogo} width="340px" /> */}
+          <form onSubmit={props.submitLogIn}>
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium is-rounded" type="text"
+                          name="username"
+                          placeholder="Name"
+                          // value={props.loggingUser.username}
+                          onChange={(event) =>
+                            props.changeHandlerLogIn(event.target)
+                          } required />
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium is-rounded" type="password"
+                          name="password"
+                          placeholder="********"
+                          // value={props.loggingUser.password}
+                          onChange={(event) =>
+                            props.changeHandlerLogIn(event.target)
+                          } required />
+              </div>
+            </div>
+            <br />
+            <button class="button is-block is-fullwidth is-danger is-medium is-rounded is-outlined" type="submit">
+            <FontAwesomeIcon icon="sign-in-alt"/><span>&nbsp;&nbsp;Log In</span>
+            </button>
+          </form>
+          <br/>
+          <nav class="level">
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="has-text-white">Don't have an account yet?</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+              <Link to="/signup">
+                        Create an Account
+                      </Link>
+              </div>
+            </div>
+          </nav>
+        </div>
+        </div>
+        </div>
+        </div>
+      </div>
+</section>
+      {/* <section class="hero is-medium login-bg">
         <div class="hero-body">
           <div class="container">
             <div class="columns is-vcentered">
@@ -25,12 +86,12 @@ const LogIn = (props) => {
                         <br />
                         “Lorem ipsum dolor sit amet, consectetur adipiscing elit.”
                       </p>
-                      {/* <p>
+                      <p>
                         <strong>Genghis Khan</strong> <small>@MongolianProverbs</small>
                        
                         <br />
                         “While horse is strong, travel to see places.”
-                      </p> */}
+                      </p>
                     </div>
                   </div>
                 </article>
@@ -46,7 +107,7 @@ const LogIn = (props) => {
                           type="text"
                           name="username"
                           placeholder="Name"
-                          // value={props.loggingUser.username}
+                          value={props.loggingUser.username}
                           onChange={(event) =>
                             props.changeHandlerLogIn(event.target)
                           }
@@ -64,7 +125,7 @@ const LogIn = (props) => {
                           type="password"
                           name="password"
                           placeholder="********"
-                          // value={props.loggingUser.password}
+                          value={props.loggingUser.password}
                           onChange={(event) =>
                             props.changeHandlerLogIn(event.target)
                           }
@@ -87,7 +148,7 @@ const LogIn = (props) => {
           </div>
         </div>
       </section>
-      {/* <form onSubmit={props.submitLogIn}>
+      <form onSubmit={props.submitLogIn}>
         <label htmlFor="username">Username: </label>
         <input
           type="text"

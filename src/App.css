@@ -1,10 +1,29 @@
 
+
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
+
+:root {
+  /* --shadowDark: #D9DDE6; */
+  --shadowDark: #caccd4c5;
+  --background: #E4E9F2;
+  /* --shadowLight: #EFF5FE; */
+  --shadowLight: #EFF5FE;
+}
+
+* {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  
+}
+
+
 .App {
   text-align: center;
+  background: var(--background);
   /* background-image: url("./bg-test.svg");
- 
+  
   background-position: center;
   background-size: cover; */
+  scroll-behavior: smooth;
   
 }
 
@@ -31,7 +50,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #82020e;
 }
 
 .header-bg {
@@ -56,6 +75,44 @@
   }
 }
 
+.card {
+  height: 100%;
+}
+
+.embossed-box {
+  border-radius: 25px;
+  padding: 1.5rem;
+  box-shadow: 8px 8px 15px var(--shadowDark), -8px -8px 15px var(--shadowLight);
+}
+
+.embossed-login-box {
+  border-radius: 25px;
+  padding: 1.5rem;
+  box-shadow: 8px 8px 15px var(--shadowDark), -8px -8px 15px var(--shadowLight);
+  background-image: url('./login-box-bg.png');
+  background-size: cover;
+}
+
+.embossed-circle {
+  
+   border-radius: 50%;
+   position: relative;
+   
+   width: 100%;
+   padding-top: 100%; /* 1:1 Aspect Ratio */
+  box-shadow: 8px 8px 15px var(--shadowDark), -8px -8px 15px var(--shadowLight);
+  background-image: url('./circle-bg.png');
+  background-size: cover;
+}
+
+.circle-content {
+  position:  absolute;
+   top: 38%;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   text-align: center;
+  }
 
 .navbar {
   background-color: transparent;
@@ -71,3 +128,75 @@
 }
 
 
+#home-one {
+  background-image: url('./fuji-anim.gif');
+  background-size: cover;
+  background-position: center bottom;
+}
+
+#login-bg {
+  background-image: url('./torii-login.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.scroll-down {
+  opacity: 1;
+  -webkit-transition: all 2s ease-in 5s;
+  transition: all 2s ease-in 5s;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -16px;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #FFF;
+  background-size: 14px auto;
+  border-radius: 50%;
+  z-index: 2;
+  -webkit-animation: bounce 2s infinite 2s;
+  animation: bounce 2s infinite 2s;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+  transform: scale(1)
+}
+
+.scroll-down:before {
+    position: absolute;
+    top: calc(50% - 8px);
+    left: calc(50% - 6px);
+    transform: rotate(-45deg);
+    display: block;
+    width: 12px;
+    height: 12px;
+    content: "";
+    border: 2px solid white;
+    border-width: 0px 0 2px 2px;
+}
+
+@keyframes bounce {
+  0%,
+  100%,
+  20%,
+  50%,
+  80% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  60% {
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}

@@ -2,6 +2,12 @@ import React from "react";
 import HandlePlaceService from "../services/HandlePlaceService";
 import PlacesService from "../services/PlacesService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "react-day-picker/lib/style.css";
+import Calendar from "./Calendar";
+import { jsPDF } from "jspdf";
+import html2canvas from 'html2canvas';
+import App from "../App";
+
 
 class Profile extends React.Component {
   state = {
@@ -15,6 +21,39 @@ class Profile extends React.Component {
 
   HandlePlaceService = new HandlePlaceService();
   service = new PlacesService();
+
+  pdfToHTML(){
+    var pdf = new jsPDF('p', 'pt', 'letter');
+    var source = document.getElementById('HTMLtoPDF')[0];
+    var specialElementHandlers = {
+      '#bypassme': function(element, renderer) {
+        return true
+      }
+    };
+
+    var margins = {
+      top: 50,
+      left: 60,
+      width: 545
+    };
+
+    
+      pdf.fromHTML(
+      source // HTML string or DOM elem ref.
+      , margins.left // x coord
+      , margins.top // y coord
+      , {
+          'width': margins.width // max width of content on PDF
+          , 'elementHandlers': specialElementHandlers
+        },
+      function (dispose) {
+        // dispose: object with X, Y of the last line add to the PDF
+        // this allow the insertion of new lines after html
+        pdf.save('html2pdf.pdf');
+      }
+    )
+  
+}
 
   componentDidMount() {
     this.HandlePlaceService.getUser(this.props.isLogged._id)
@@ -98,6 +137,32 @@ class Profile extends React.Component {
     );
   };
 
+  
+  printDocument() {
+    const input = document.getElementById('divToPrint');
+    html2canvas(input)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        // const pdf = new jsPDF (   
+        //   width 920mm
+        //   32432
+        //   dsf 
+        // )
+        // pdf.addImage(imgData, 'JPEG', 0, 0);
+        // pdf.output('dataurlnewwindow');
+        imgData.save("download.png");
+      })
+    ;
+  }
+
+  // export_div(){
+
+  //   var pdf = new jsPDF("p", "pt", "a4");
+  //   pdf.addHTML(document.getElementById('divToPrint'), 15, 15, function() {
+  //     pdf.save('div.pdf');
+  //   });
+  // }
+
   moveFromWantToAlready = (poi) => {
     this.HandlePlaceService.fromWantToAlready(
       poi,
@@ -132,41 +197,43 @@ class Profile extends React.Component {
   };
 
   deleteFromWantToVisit = (poi) => {
-    this.HandlePlaceService
-      .deleteFromWantToVisit(poi, this.props.isLogged._id)
-      .then(response => {
-        setTimeout(() => {
-          this.setState({
-            wantToVisit: response.wantToVisit,
-          })
-          this.getFullWantToVisit()
-        },200)
-      })
-  }
+    this.HandlePlaceService.deleteFromWantToVisit(
+      poi,
+      this.props.isLogged._id
+    ).then((response) => {
+      setTimeout(() => {
+        this.setState({
+          wantToVisit: response.wantToVisit,
+        });
+        this.getFullWantToVisit();
+      }, 200);
+    });
+  };
   deleteFromVisited = (poi) => {
-    this.HandlePlaceService
-      .deleteFromVisited(poi, this.props.isLogged._id)
-      .then(response => {
-        setTimeout(() => {
-          this.setState({
-            alreadyVisited: response.alreadyVisited,
-          })
-          this.getFullVisited()
-        },200)
-      })
-  }
+    this.HandlePlaceService.deleteFromVisited(
+      poi,
+      this.props.isLogged._id
+    ).then((response) => {
+      setTimeout(() => {
+        this.setState({
+          alreadyVisited: response.alreadyVisited,
+        });
+        this.getFullVisited();
+      }, 200);
+    });
+  };
   deleteHotel = (hotel) => {
-    this.HandlePlaceService
-      .deleteHotel(hotel, this.props.isLogged._id)
-      .then(response => {
+    this.HandlePlaceService.deleteHotel(hotel, this.props.isLogged._id).then(
+      (response) => {
         setTimeout(() => {
           this.setState({
             hotelsBooking: response.hotelsBooking,
-          })
-          this.getFullHotels()
-        },200)
-      })
-  }
+          });
+          this.getFullHotels();
+        }, 200);
+      }
+    );
+  };
 
   renderWantToVisit = () => {
     return this.state.wantToVisitFull.map((place, index) => {
@@ -183,30 +250,30 @@ class Profile extends React.Component {
             </div>
             <div class="card-content">
               <div class="media">
-                <div class="media-content has-text-white">
+                <div class="media-content">
                   <p class="title is-6 has-text-danger-dark">
                     {place.place.name_local}
                   </p>
                   <p class="title is-6 has-text-white">{place.place.name_en}</p>
-                  <p class="subtitle is-6 has-text-white">
-                    {place.place.name_suffix}
-                  </p>
                 </div>
               </div>
-              <div class="content has-text-white">
-                <div class="buttons">
-                  <button class="button is-danger is-small" onClick={() => this.deleteFromWantToVisit(place.place.id)} >
-                    <FontAwesomeIcon icon="times" />
-                    <span>&nbsp;Delete</span>
-                  </button>
+              <div class="field is-grouped is-grouped-centered">
+                <p class="control">
                   <button
-                    class="button is-link is-small"
+                    class="button is-danger is-small is-rounded is-outlined"
+                    onClick={() => this.deleteFromWantToVisit(place.place.id)}
+                  >
+                    <FontAwesomeIcon icon="times" />
+                  </button>
+                </p>
+                <p class="control">
+                  <button
+                    class="button is-link is-small is-rounded is-outlined"
                     onClick={() => this.moveFromWantToAlready(place.place.id)}
                   >
                     <FontAwesomeIcon icon="arrows-alt-h" />
-                    <span>&nbsp;Visited</span>
                   </button>
-                </div>
+                </p>
               </div>
             </div>
           </div>
@@ -235,25 +302,25 @@ class Profile extends React.Component {
                     {place.place.name_local}
                   </p>
                   <p class="title is-6 has-text-white">{place.place.name_en}</p>
-                  <p class="subtitle is-6 has-text-white">
-                    {place.place.name_suffix}
-                  </p>
                 </div>
               </div>
-              <div class="content has-text-white">
-                <div class="buttons">
-                  <button class="button is-danger is-small" onClick={()=> this.deleteFromVisited(place.place.id)}>
-                    <FontAwesomeIcon icon="times" />
-                    <span>&nbsp;Delete</span>
-                  </button>
+              <div class="field is-grouped is-grouped-centered">
+                <p class="control">
                   <button
-                    class="button is-link is-small"
+                    class="button is-danger is-small is-rounded is-outlined"
+                    onClick={() => this.deleteFromVisited(place.place.id)}
+                  >
+                    <FontAwesomeIcon icon="times" />
+                  </button>
+                </p>
+                <p class="control">
+                  <button
+                    class="button is-link is-small is-rounded is-outlined"
                     onClick={() => this.moveFromAlreadyToWant(place.place.id)}
                   >
                     <FontAwesomeIcon icon="arrows-alt-h" />
-                    <span>&nbsp;To Visit</span>
                   </button>
-                </div>
+                </p>
               </div>
             </div>
           </div>
@@ -294,7 +361,10 @@ class Profile extends React.Component {
                 </a>
                 <br />
                 <div class="buttons">
-                  <button class="button is-danger is-small" onClick={() => this.deleteHotel(place.place.id)} >
+                  <button
+                    class="button is-danger is-small"
+                    onClick={() => this.deleteHotel(place.place.id)}
+                  >
                     <FontAwesomeIcon icon="times" />
                     <span>&nbsp;Delete</span>
                   </button>
@@ -308,81 +378,162 @@ class Profile extends React.Component {
   };
 
   getAllPois = () => {
-    const newArr = [...this.state.wantToVisit]
-    const poiString = newArr.join(',')
-    const url = `https://travel.sygic.com/widget/#/?guids=${poiString}&unscrollable&unclickable&lang=en`
-    return url
-  }
+    const newArr = [...this.state.wantToVisit];
+    const poiString = newArr.join(",");
+    const url = `https://travel.sygic.com/widget/#/?guids=${poiString}&unscrollable&unclickable&lang=en`;
+    return url;
+  };
 
   render() {
     return (
       <div>
-      <h2>Welcome, {this.props.isLogged.username}</h2>
-      <div>{this.state.wantToVisit.map(wantToVisit =>  <div key={wantToVisit}> {wantToVisit} </div>)}</div>
+        <h2>Welcome, {this.props.isLogged.username}</h2>
+        {/* <div>{this.state.wantToVisit.map(wantToVisit =>  <div key={wantToVisit}> {wantToVisit} </div>)}</div> */}
 
-      <section class="hero is-bold">
+        <section class="hero is-bold">
           <div class="hero-body">
             <div class="container">
-        <div class="columns">
-          <div class="column is-half has-background-grey-lighter">
-            <p class="title is-6">The places I plan to visit</p>
-            <div class="columns is-multiline">
-            {this.state.wantToVisitFull.length === 0
-                  ? this.renderLoadingImage()
-                  : this.renderWantToVisit()}
-            </div>
-            <iframe
-          src={this.getAllPois()}
-          width="100%"
-          height="300"
-          // onLoad={this.hideSpinner}
-          sandbox
-        ></iframe>
-          </div>
-          <div class="column is-half has-background-grey-lighter">
-            <p class="title is-6">Already visited places</p>
-            <div class="columns is-multiline">
-            {this.state.alreadyVisitedFull.length === 0
-                  ? this.renderLoadingImage()
-                  : this.renderVisited()}
-            </div>
-            <iframe
-          src="https://travel.sygic.com/widget/#/?guids=poi:19822,poi:19967,poi:19820,poi:22726,poi:19841,poi:48608,poi:26909,poi:43300,poi:5249835,poi:36922040,poi:26931,poi:48611,poi:26858,poi:26915,poi:50724,poi:50833,poi:62931,poi:7889929,poi:5097628,poi:7780061,poi:62936&unscrollable&unclickable&lang=en"
-          width="100%"
-          height="300"
-          // onLoad={this.hideSpinner}
-          sandbox
-        ></iframe>
-          </div>
-        </div>
-</div>
-</div>
-</section>
+              <div class="columns">
+                <div class="column is-one-third embossed-box mx-2">
+                  <p class="title is-6 is-spaced mt-4">
+                    <FontAwesomeIcon icon="map-marker-alt" />
+                    &nbsp;&nbsp;Places to visit
+                  </p>
+                  <div class="columns is-multiline">
+                    {this.state.wantToVisitFull.length === 0
+                      ? this.renderLoadingImage()
+                      : this.renderWantToVisit()}
+                  </div>
+                  <iframe
+                    src={this.getAllPois()}
+                    width="100%"
+                    height="300"
+                    // onLoad={this.hideSpinner}
+                    sandbox
+                  ></iframe>
+                </div>
+                <div class="column is-one-third embossed-box mx-2">
+                  <p class="title is-6 is-spaced mt-4">
+                    <FontAwesomeIcon icon="check-circle" />
+                    &nbsp;&nbsp;Already visited
+                  </p>
+                  <div class="columns is-multiline">
+                    {this.state.alreadyVisitedFull.length === 0
+                      ? this.renderLoadingImage()
+                      : this.renderVisited()}
+                  </div>
+                  <iframe
+                    src="https://travel.sygic.com/widget/#/?guids=poi:19822,poi:19967,poi:19820,poi:22726,poi:19841,poi:48608,poi:26909,poi:43300,poi:5249835,poi:36922040,poi:26931,poi:48611,poi:26858,poi:26915,poi:50724,poi:50833,poi:62931,poi:7889929,poi:5097628,poi:7780061,poi:62936&unscrollable&unclickable&lang=en"
+                    width="100%"
+                    height="300"
+                    // onLoad={this.hideSpinner}
+                    sandbox
+                  ></iframe>
+                </div>
 
-<section class="hero is-bold">
+                <div class="column is-one-third embossed-box mx-2">
+                  <p class="title is-6 is-spaced mt-4">
+                    <FontAwesomeIcon icon="check-circle" />
+                    &nbsp;&nbsp;Booking
+                  </p>
+                  <div class="columns is-multiline">
+                    {this.state.hotelsBookingFull.length === 0
+                      ? this.renderLoadingImage()
+                      : this.renderHotels()}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="hero is-bold">
           <div class="hero-body">
             <div class="container">
-        <div class="columns">
-          <div class="column is-two-fifths has-background-info is-offset-1">
-            <p class="title is-6">Hotels Booking</p>
-            <div class="columns is-multiline">
-            {this.state.hotelsBookingFull.length === 0
-                  ? this.renderLoadingImage()
-                  : this.renderHotels()}
-            </div>
-          </div>
-          <div class="column is-two-fifths has-background-primary is-offset-1">
-            <p class="title is-6">Tours</p>
-            <div class="columns is-multiline">
-            
-            </div>
-          </div>
-        </div>
-</div>
-</div>
-</section>
+            <br/>
+            <br/>
+            <br/>
+            <button onClick={this.pdfToHTML}>Download PDF</button>
+            <div className="mb5">
+        <button onClick={this.printDocument}>Print</button>
+      </div>
+      <div id="HTMLtoPDF">
+          <center>
+              <div class="columns">
+                {/* <div class="column is-two-fifths embossed-box mx-2">
+                  <p class="title is-6 is-spaced mt-4">
+                    <FontAwesomeIcon icon="h-square" />
+                    &nbsp;&nbsp;Booking
+                  </p>
+                  <div class="columns is-multiline">
+                    {this.state.hotelsBookingFull.length === 0
+                      ? this.renderLoadingImage()
+                      : this.renderHotels()}
+                  </div>
+                </div> */}
+                
+                <div id="html-content-holder" class="column is-three-fifths is-offset-one-fifth embossed-box">
+                  <p class="title is-6 is-spaced mt-4">
+                    <FontAwesomeIcon icon="route" />
+                    &nbsp;&nbsp;My Japan Travel Plan
+                  </p>
+                  <div class="columns mt-4">
+                    <div class="column is-half mx-2">
+                      <div>
+                        <Calendar />
+                      </div>
+                    </div>
+                    <div class="column is-half mx-2">
+                      <div>
+                        <p class="title is-6">
+                          <FontAwesomeIcon icon="map-marker-alt" />
+                          &nbsp;&nbsp;I'm planning to visit:
+                        </p>
+                      </div>
+                      <div class="mt-4">
+                        {this.state.wantToVisitFull.map((wantToVisitFull) => (
+                          <div class="mt-4" key={wantToVisitFull}>
+                            {" "}
+                            {wantToVisitFull.place.name_en}{" "}
+                          </div>
+                        ))}
+                      </div>
 
-        
+                      <p class="title is-6">
+                        <FontAwesomeIcon icon="map-marker-alt" />
+                        &nbsp;&nbsp;Hotels / Booking:
+                      </p>
+                    </div>
+                  </div>
+                  <iframe
+                    src={this.getAllPois()}
+                    width="100%"
+                    height="300"
+                    // onLoad={this.hideSpinner}
+                    sandbox
+                  ></iframe>
+                </div>
+              </div>
+              </center>
+            </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+    <div class="container has-text-centered">
+        <h3 class="subtitle">
+            Print your cards to play with your friends! Get a <strong>preview</strong> and
+            <strong>download</strong> the image.
+        </h3>
+        <button id="btn-Preview-Image" class="button is-dark" type="button" value="Preview">Preview &nbsp <span class="icon is-small">
+                <i class="fas fa-level-down-alt"></i></span></button>
+        <a id="btn-Convert-Html2Image" class="button is-dark" href="#">Download &nbsp <span class="icon is-small">
+                <i class="fas fa-file-download"></i></span></a>
+        <div id="previewImage"></div>
+    </div>
+</section>
+       
+
         {/* <section class="hero is-primary is-bold">
           <div class="hero-body">
             <div class="container">

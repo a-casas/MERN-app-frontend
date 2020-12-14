@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import HandlePlaceService from "../services/HandlePlaceService";
 import PlacesService from "../services/PlacesService";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class OnePoi extends Component {
   state = {
@@ -49,12 +50,34 @@ class OnePoi extends Component {
   renderButtons = () => {
     if (this.props.isLogged.username) {
       return (
-        <div>
-          <button onClick={() => this.addToWantToVisit()}>Want to visit</button>
-          <button onClick={() => this.addToAlreadyVisited()}>Already Visited</button>
-          {/* <button onClick={() => this.addToHotelsBooking()}>Add to Booking</button> */}
-        </div>
+        // <div>
+        //   <button onClick={() => this.addToWantToVisit()}>Want to visit</button>
+        //   <button onClick={() => this.addToAlreadyVisited()}>Already Visited</button>
+        //   {/* <button onClick={() => this.addToHotelsBooking()}>Add to Booking</button> */}
+        // </div>
+        <div class="field is-grouped is-grouped-centered">
+                <p class="control">
+                  <button
+                    class="button is-danger is-rounded is-outlined is-inverted"
+                    onClick={() => this.addToWantToVisit()}
+                  >
+                    <FontAwesomeIcon icon="map-marker-alt" />
+                    <span>&nbsp;&nbsp;Want to visit</span>
+                  </button>
+              
+                </p>
+                <p class="control">
+                  <button
+                    class="button is-danger is-rounded is-outlined is-inverted"
+                    onClick={() => this.addToAlreadyVisited()}
+                  >
+                    <FontAwesomeIcon icon="check-circle" />
+                    <span>&nbsp;&nbsp;Already visited</span>
+                  </button>
+                </p>
+              </div>
       );
+
     } else {
       return (
         <div>
@@ -122,11 +145,6 @@ class OnePoi extends Component {
                       <span class="has-text-info"> Phone:</span> {this.state.place.phone}
                       <br />
                       <span class="has-text-info"> Address:</span> {this.state.place.address}
-                      <br />
-                      <a href={this.state.place.references[1].url}>
-                        Official Website
-                      </a>
-                      <br />
                       <br />
                       <span class="has-text-info"> Tags:</span>{this.state.place.tag_keys}
                       <div className="is-spaced mt-5">

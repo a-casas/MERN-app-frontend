@@ -424,7 +424,7 @@ class AllPlaces extends React.Component {
                 </div>
 
                 <div class="content">
-                  <p>Region: {poi.name_suffix}</p>
+                <span class="has-text-info"> Region:</span> {poi.name_suffix}
                 </div>
               </div>
             </div>
@@ -464,7 +464,7 @@ class AllPlaces extends React.Component {
                   <div class="media-content">
                     <div class="content has-text-left">
                       <p class="mt-1">
-                        <strong>Filter by popular collections</strong>
+                        <strong></strong>
                       </p>
                       <div class="mt-4">
                         <label className="form-switch">

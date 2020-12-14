@@ -7,7 +7,7 @@ class UserService {
   constructor() {
     let service = axios.create({
       // baseURL: "https://mern-app-backend.herokuapp.com/",
-      baseURL: "http://localhost:3000/",
+      baseURL: "http://localhost:3000",
       withCredentials: true
     });
 
@@ -16,6 +16,7 @@ class UserService {
   }
 
   signup = (username, password) => {
+    console.log(username)
     return this.service.post("/signup", {username, password})
     .then(response => response.data)
   }
