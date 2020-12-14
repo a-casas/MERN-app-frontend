@@ -1,24 +1,26 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link, Route, Redirect } from "react-router-dom";
+import { Link, Route, Redirect, withRouter } from "react-router-dom";
+import RedPoint from "../red-point.png"
+import { render } from "@testing-library/react";
 
-
-const LogIn = (props) => {
+class LogIn extends React.Component {
   // const {submitLogIn, loggingUser, changeHandlerLogIn} = props
-  const scrollToTop = () => {
-    document.body.scrollTop = 0
+  constructor(props){
+    super(props)
   }
+    render() {
   return (
     <div>
-    {scrollToTop()}
+    
      <section id="login-bg" class="hero is-large">
       <div class="hero-body">
       <div class="container has-text-centered">
       <div class="columns is-centered">
       <div class="column is-4">
         <div class="embossed-login-box">
-          {/* <img src={jAPPlogo} width="340px" /> */}
-          <form onSubmit={props.submitLogIn}>
+          {/* <img src={RedPoint} width="200px" /> */}
+          <form onSubmit={this.props.submitLogIn}>
             <div class="field">
               <div class="control">
                 <input class="input is-medium is-rounded" type="text"
@@ -26,7 +28,7 @@ const LogIn = (props) => {
                           placeholder="Name"
                           // value={props.loggingUser.username}
                           onChange={(event) =>
-                            props.changeHandlerLogIn(event.target)
+                            this.props.changeHandlerLogIn(event.target)
                           } required />
               </div>
             </div>
@@ -37,7 +39,7 @@ const LogIn = (props) => {
                           placeholder="********"
                           // value={props.loggingUser.password}
                           onChange={(event) =>
-                            props.changeHandlerLogIn(event.target)
+                            this.props.changeHandlerLogIn(event.target)
                           } required />
               </div>
             </div>
@@ -169,6 +171,7 @@ const LogIn = (props) => {
       </form> */}
     </div>
   );
+    }
 };
 
 export default LogIn;

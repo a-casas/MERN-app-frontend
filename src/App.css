@@ -119,6 +119,10 @@
   background-image: none;
 }
 
+input {
+  background: var(--shadowDark) !important;
+}
+
 #nav-toggle-state {
   display: none;
 }

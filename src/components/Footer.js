@@ -47,14 +47,7 @@ const Footer = (props)=>{
 
           <div class="control">
             <div class="tags has-addons">
-              <span class="tag is-dark">Google Maps</span>
-              <span class="tag is-info">API</span>
-            </div>
-          </div>
-
-          <div class="control">
-            <div class="tags has-addons">
-              <span class="tag is-dark">Handlebars</span>
+              <span class="tag is-dark">React</span>
               <span class="tag is-warning">JS</span>
             </div>
           </div>

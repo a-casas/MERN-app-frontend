@@ -4,7 +4,7 @@ class PlacesService {
         let service = axios.create({
             baseURL: 'https://api.sygictravelapi.com/1.2/en/',
             headers: {
-                'x-api-key' : ''
+                'x-api-key' : process.env.REACT_APP_API_KEY
             },
         })
         this.service = service

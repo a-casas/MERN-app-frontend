@@ -23,7 +23,7 @@ class UserService {
 
   login = (username, password) => {
     return this.service.post("/login", {username, password})
-    .then(response => response.data)
+    .then(response => response.data)  
   }
 
   loggedin = () =>{

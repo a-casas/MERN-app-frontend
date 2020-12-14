@@ -54,7 +54,7 @@ const Home = (props) => {
           </div>
         </div>
       </section>
-      <section class="section has-background is-large">
+      <section class="section has-background is-medium">
         <div class="container">
           <h2 id="home-two" class="title is-spaced is-size-4-mobile pb-5">lorem ipsum 1</h2>
           <div class="columns mb-6">
@@ -135,7 +135,7 @@ const Home = (props) => {
         </div>
         <div class="container has-text-centered is-fluid">
         <h2 class="title is-spaced is-size-4-mobile pb-5 mt-6">lorem ipsum 2</h2>
-          <iframe
+          <iframe class="embossed-box"
             src="https://travel.sygic.com/widget/#/?guids=poi:19822,poi:19967,poi:19820,poi:22726,poi:19841,poi:48608,poi:26909,poi:43300,poi:5249835,poi:36922040,poi:26931,poi:48611,poi:26858,poi:26915,poi:50724,poi:50833,poi:62931,poi:7889929,poi:5097628,poi:7780061,poi:62936&unscrollable&unclickable&lang=en"
             width="100%"
             height="700"

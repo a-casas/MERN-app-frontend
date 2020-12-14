@@ -7,6 +7,7 @@ import Calendar from "./Calendar";
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
 import App from "../App";
+import { Link, Route, Redirect } from "react-router-dom";
 
 
 class Profile extends React.Component {
@@ -71,24 +72,7 @@ class Profile extends React.Component {
         console.log(err);
       });
   }
-  // getFullWantToVisit = ()=>{
-  //       const prueba = this.state.wantToVisit.map((_id)=>{
-
-  //         return fetch(`https://api.jikan.moe/v3/place/${_id}`)
-  //         .then((data)=>{
-  //           return data.json()
-  //         })
-  //         .then((dataJSON)=>{
-  //           return dataJSON
-  //         })
-  //       })
-
-  //       Promise.all(prueba)
-  //       .then((result)=>{
-  //         this.setState({wantToVisitFull : result})
-  //       })
-  //     }
-
+  
   getFullWantToVisit = () => {
     const newArr = [];
     this.state.wantToVisit.map((poi) => {
@@ -127,10 +111,6 @@ class Profile extends React.Component {
 
   renderLoadingImage = () => {
     return (
-      // <img
-      //   src="https://psychiatryonline.org/specs/ux3/releasedAssets/images/spinner.gif"
-      //   alt="Loading"
-      // />
       <progress class="progress is-large is-info mt-5" max="100">
         60%
       </progress>
@@ -352,23 +332,29 @@ class Profile extends React.Component {
                 </div>
               </div>
               <div class="content has-text-white">
+                <div class="field is-grouped is-grouped-centered">
+                <p class="control">
+                <button
+                    class="button is-danger is-small is-rounded is-outlined"
+                    onClick={() => this.deleteHotel(place.place.id)}
+                  >
+                    <FontAwesomeIcon icon="times" />
+              
+                  </button>
+                </p>
+                <p class="control">
                 <a
-                  class="button is-info"
+                  class="button is-info is-small is-rounded is-outlined"
                   href={place.place.references[0].url}
                   target="_blank"
                 >
                   Booking.com
                 </a>
-                <br />
-                <div class="buttons">
-                  <button
-                    class="button is-danger is-small"
-                    onClick={() => this.deleteHotel(place.place.id)}
-                  >
-                    <FontAwesomeIcon icon="times" />
-                    <span>&nbsp;Delete</span>
-                  </button>
-                </div>
+                </p>
+              </div>
+
+              
+                
               </div>
             </div>
           </div>
@@ -384,6 +370,13 @@ class Profile extends React.Component {
     return url;
   };
 
+  getAllVisitedPois = () => {
+    const newArr = [...this.state.alreadyVisited];
+    const poiString = newArr.join(",");
+    const url = `https://travel.sygic.com/widget/#/?guids=${poiString}&unscrollable&unclickable&lang=en`;
+    return url;
+  };
+
   render() {
     return (
       <div>
@@ -394,8 +387,16 @@ class Profile extends React.Component {
           <div class="hero-body">
             <div class="container">
               <div class="columns">
-                <div class="column is-one-third embossed-box mx-2">
-                  <p class="title is-6 is-spaced mt-4">
+                <div class="column is-half embossed-box mx-2">
+                <p class="title is-6 is-spaced mt-4">
+                    <FontAwesomeIcon icon="route" />
+                    &nbsp;&nbsp;My Travel Plan
+                  </p>
+                  
+                  <div>
+                        <Calendar />
+                      </div>
+                      <p class="title is-6 is-spaced mt-4">
                     <FontAwesomeIcon icon="map-marker-alt" />
                     &nbsp;&nbsp;Places to visit
                   </p>
@@ -404,6 +405,17 @@ class Profile extends React.Component {
                       ? this.renderLoadingImage()
                       : this.renderWantToVisit()}
                   </div>
+                  <p class="title is-6 is-spaced mt-4">
+                    <FontAwesomeIcon icon="h-square" />
+                    &nbsp;&nbsp;My Hotels
+                  </p>
+
+                  <div class="columns is-multiline">
+                    {this.state.hotelsBookingFull.length === 0
+                      ? this.renderLoadingImage()
+                      : this.renderHotels()}
+                  </div>
+                  
                   <iframe
                     src={this.getAllPois()}
                     width="100%"
@@ -412,7 +424,7 @@ class Profile extends React.Component {
                     sandbox
                   ></iframe>
                 </div>
-                <div class="column is-one-third embossed-box mx-2">
+                <div class="column is-half embossed-box mx-2">
                   <p class="title is-6 is-spaced mt-4">
                     <FontAwesomeIcon icon="check-circle" />
                     &nbsp;&nbsp;Already visited
@@ -423,7 +435,7 @@ class Profile extends React.Component {
                       : this.renderVisited()}
                   </div>
                   <iframe
-                    src="https://travel.sygic.com/widget/#/?guids=poi:19822,poi:19967,poi:19820,poi:22726,poi:19841,poi:48608,poi:26909,poi:43300,poi:5249835,poi:36922040,poi:26931,poi:48611,poi:26858,poi:26915,poi:50724,poi:50833,poi:62931,poi:7889929,poi:5097628,poi:7780061,poi:62936&unscrollable&unclickable&lang=en"
+                    src={this.getAllVisitedPois()}
                     width="100%"
                     height="300"
                     // onLoad={this.hideSpinner}
@@ -431,95 +443,32 @@ class Profile extends React.Component {
                   ></iframe>
                 </div>
 
-                <div class="column is-one-third embossed-box mx-2">
-                  <p class="title is-6 is-spaced mt-4">
-                    <FontAwesomeIcon icon="check-circle" />
-                    &nbsp;&nbsp;Booking
-                  </p>
-                  <div class="columns is-multiline">
-                    {this.state.hotelsBookingFull.length === 0
-                      ? this.renderLoadingImage()
-                      : this.renderHotels()}
-                  </div>
-                </div>
+                
               </div>
+              <div class="control my-5 mx-5">
+                <Link
+                    class="button is-black is-outlined is-rounded"
+                    to="/all-places"
+                  >
+                    <FontAwesomeIcon icon="map-marker-alt" />
+                    <span>&nbsp;Add more places to visit</span>
+                  </Link>
+                </div>
             </div>
           </div>
         </section>
 
-        <section class="hero is-bold">
-          <div class="hero-body">
-            <div class="container">
-            <br/>
-            <br/>
-            <br/>
-            <button onClick={this.pdfToHTML}>Download PDF</button>
-            <div className="mb5">
-        <button onClick={this.printDocument}>Print</button>
-      </div>
-      <div id="HTMLtoPDF">
-          <center>
-              <div class="columns">
-                {/* <div class="column is-two-fifths embossed-box mx-2">
-                  <p class="title is-6 is-spaced mt-4">
-                    <FontAwesomeIcon icon="h-square" />
-                    &nbsp;&nbsp;Booking
-                  </p>
-                  <div class="columns is-multiline">
-                    {this.state.hotelsBookingFull.length === 0
-                      ? this.renderLoadingImage()
-                      : this.renderHotels()}
-                  </div>
-                </div> */}
-                
-                <div id="html-content-holder" class="column is-three-fifths is-offset-one-fifth embossed-box">
-                  <p class="title is-6 is-spaced mt-4">
-                    <FontAwesomeIcon icon="route" />
-                    &nbsp;&nbsp;My Japan Travel Plan
-                  </p>
-                  <div class="columns mt-4">
-                    <div class="column is-half mx-2">
-                      <div>
-                        <Calendar />
-                      </div>
-                    </div>
-                    <div class="column is-half mx-2">
-                      <div>
-                        <p class="title is-6">
-                          <FontAwesomeIcon icon="map-marker-alt" />
-                          &nbsp;&nbsp;I'm planning to visit:
-                        </p>
-                      </div>
-                      <div class="mt-4">
+        {/* <div class="mt-4">
                         {this.state.wantToVisitFull.map((wantToVisitFull) => (
                           <div class="mt-4" key={wantToVisitFull}>
                             {" "}
                             {wantToVisitFull.place.name_en}{" "}
                           </div>
                         ))}
-                      </div>
+                      </div> */}
 
-                      <p class="title is-6">
-                        <FontAwesomeIcon icon="map-marker-alt" />
-                        &nbsp;&nbsp;Hotels / Booking:
-                      </p>
-                    </div>
-                  </div>
-                  <iframe
-                    src={this.getAllPois()}
-                    width="100%"
-                    height="300"
-                    // onLoad={this.hideSpinner}
-                    sandbox
-                  ></iframe>
-                </div>
-              </div>
-              </center>
-            </div>
-            </div>
-          </div>
-        </section>
-        <section class="section">
+       
+        {/* <section class="section">
     <div class="container has-text-centered">
         <h3 class="subtitle">
             Print your cards to play with your friends! Get a <strong>preview</strong> and
@@ -531,7 +480,7 @@ class Profile extends React.Component {
                 <i class="fas fa-file-download"></i></span></a>
         <div id="previewImage"></div>
     </div>
-</section>
+</section> */}
        
 
         {/* <section class="hero is-primary is-bold">

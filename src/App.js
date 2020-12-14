@@ -134,7 +134,7 @@ class App extends React.Component {
               </Link>
               <Link class="navbar-item" to="/all-hotels">
               <FontAwesomeIcon icon="h-square"/>
-              <span>&nbsp;Places</span>
+              <span>&nbsp;Hotels</span>
               </Link>
             <span class="navbar-item">
             {!this.state.isLogged.username && (
@@ -267,12 +267,18 @@ class App extends React.Component {
     <nav class="tabs is-boxed is-fullwidth">
       <div class="container">
         <ul>
-          <li class="is-active"><a>Overview</a></li>
-          <li><a>Modifiers</a></li>
-          <li><a>Grid</a></li>
-          <li><a>Elements</a></li>
-          <li><a>Components</a></li>
-          <li><a>Layout</a></li>
+          <li class="is-active"> <Link class="" to="/">
+              <FontAwesomeIcon icon="home"/>
+              <span>&nbsp;Home</span>
+              </Link></li>
+          <li><Link class="" to="/all-places">
+              <FontAwesomeIcon icon="map-marker-alt"/>
+              <span>&nbsp;Places</span>
+              </Link></li>
+          <li><Link class="" to="/all-hotels">
+              <FontAwesomeIcon icon="h-square"/>
+              <span>&nbsp;Hotels</span>
+              </Link></li>
         </ul>
       </div>
     </nav>
