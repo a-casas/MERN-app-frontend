@@ -15,9 +15,9 @@ import UserService from "./services/UserService";
 import OnePoi from "./components/OnePoi";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faUser, faUserPlus, faRoute, faSignInAlt, faSignOutAlt, faHome, faMapMarkerAlt, faHSquare, faTimes, faArrowsAltH, faLayerGroup, faSearchLocation, faCheckCircle, faInfoCircle, faListUl, faPlusCircle, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faUserPlus, faRoute, faSignInAlt, faSignOutAlt, faHome, faMapMarkerAlt, faHSquare, faTimes, faArrowsAltH, faLayerGroup, faSearchLocation, faCheckCircle, faInfoCircle, faListUl, faPlusCircle, faMapMarkedAlt, faCompass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-library.add(fab, faUser, faUserPlus, faRoute, faSignInAlt, faSignOutAlt, faHome, faMapMarkerAlt, faHSquare, faTimes, faArrowsAltH, faLayerGroup, faSearchLocation, faCheckCircle, faInfoCircle, faListUl, faPlusCircle, faMapMarkedAlt )
+library.add(fab, faUser, faUserPlus, faRoute, faSignInAlt, faSignOutAlt, faHome, faMapMarkerAlt, faHSquare, faTimes, faArrowsAltH, faLayerGroup, faSearchLocation, faCheckCircle, faInfoCircle, faListUl, faPlusCircle, faMapMarkedAlt, faCompass )
 
 
 class App extends React.Component {
@@ -114,16 +114,16 @@ class App extends React.Component {
         <div id="navbarMenuHeroC" className="navbar-menu">
           <div className="navbar-end">
           <Link className="navbar-item" to="/">
-              <FontAwesomeIcon icon="home"/>
-              <span>&nbsp;Home</span>
+          <span class="icon has-text-danger-dark"><FontAwesomeIcon icon="home" /></span>
+              <span>Home</span>
               </Link>
               <Link className="navbar-item" to="/all-places">
-              <FontAwesomeIcon icon="map-marker-alt"/>
-              <span>&nbsp;Places</span>
+              <span class="icon has-text-danger-dark"><FontAwesomeIcon icon="map-marker-alt" /></span>
+              <span>Places</span>
               </Link>
               <Link className="navbar-item" to="/all-hotels">
-              <FontAwesomeIcon icon="h-square"/>
-              <span>&nbsp;Hotels</span>
+              <span class="icon has-text-danger-dark"><FontAwesomeIcon icon="h-square" /></span>
+              <span>Hotels</span>
               </Link>
             <span className="navbar-item">
             {!this.state.isLogged.username && (
@@ -246,16 +246,16 @@ class App extends React.Component {
       <div className="container">
         <ul>
           <li className="is-active"> <Link className="" to="/">
-              <FontAwesomeIcon icon="home"/>
-              <span>&nbsp;Home</span>
+          <span class="icon has-text-danger-dark"><FontAwesomeIcon icon="home" /></span>
+              <span>Home</span>
               </Link></li>
           <li><Link className="" to="/all-places">
-              <FontAwesomeIcon icon="map-marker-alt"/>
-              <span>&nbsp;Places</span>
+          <span class="icon has-text-danger-dark"><FontAwesomeIcon icon="map-marker-alt" /></span>
+              <span>Places</span>
               </Link></li>
           <li><Link className="" to="/all-hotels">
-              <FontAwesomeIcon icon="h-square"/>
-              <span>&nbsp;Hotels</span>
+          <span class="icon has-text-danger-dark"><FontAwesomeIcon icon="h-square" /></span>
+              <span>Hotels</span>
               </Link></li>
         </ul>
       </div>
