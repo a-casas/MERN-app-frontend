@@ -5,11 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "react-day-picker/lib/style.css";
 import Calendar from "./Calendar";
 import { jsPDF } from "jspdf";
-import html2canvas from 'html2canvas';
+import html2canvas from "html2canvas";
 import App from "../App";
 import { Link, Route, Redirect } from "react-router-dom";
-
-
+import MountFuji from "../fuji-anim.gif";
 
 class Profile extends React.Component {
   state = {
@@ -23,8 +22,6 @@ class Profile extends React.Component {
 
   HandlePlaceService = new HandlePlaceService();
   service = new PlacesService();
-
-
 
   componentDidMount() {
     this.HandlePlaceService.getUser(this.props.isLogged._id)
@@ -43,8 +40,6 @@ class Profile extends React.Component {
       });
   }
 
-  
-  
   getFullWantToVisit = () => {
     const newArr = [];
     this.state.wantToVisit.map((poi) => {
@@ -89,24 +84,20 @@ class Profile extends React.Component {
     );
   };
 
-  
   printDocument() {
-    const input = document.getElementById('divToPrint');
-    html2canvas(input)
-      .then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        // const pdf = new jsPDF (   
-        //   width 920mm
-        //   32432
-        //   dsf 
-        // )
-        // pdf.addImage(imgData, 'JPEG', 0, 0);
-        // pdf.output('dataurlnewwindow');
-        imgData.save("download.png");
-      })
-    ;
+    const input = document.getElementById("divToPrint");
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      // const pdf = new jsPDF (
+      //   width 920mm
+      //   32432
+      //   dsf
+      // )
+      // pdf.addImage(imgData, 'JPEG', 0, 0);
+      // pdf.output('dataurlnewwindow');
+      imgData.save("download.png");
+    });
   }
-
 
   moveFromWantToAlready = (poi) => {
     this.HandlePlaceService.fromWantToAlready(
@@ -199,7 +190,9 @@ class Profile extends React.Component {
                   <p className="title is-6 has-text-danger-dark">
                     {place.place.name_local}
                   </p>
-                  <p className="title is-6 has-text-white">{place.place.name_en}</p>
+                  <p className="title is-6 has-text-white">
+                    {place.place.name_en}
+                  </p>
                 </div>
               </div>
               <div className="field is-grouped is-grouped-centered">
@@ -246,7 +239,9 @@ class Profile extends React.Component {
                   <p className="title is-6 has-text-danger-dark">
                     {place.place.name_local}
                   </p>
-                  <p className="title is-6 has-text-white">{place.place.name_en}</p>
+                  <p className="title is-6 has-text-white">
+                    {place.place.name_en}
+                  </p>
                 </div>
               </div>
               <div className="field is-grouped is-grouped-centered">
@@ -290,7 +285,9 @@ class Profile extends React.Component {
             <div className="card-content">
               <div className="media">
                 <div className="media-content has-text-white">
-                  <p className="title is-6 has-text-white">{place.place.name_en}</p>
+                  <p className="title is-6 has-text-white">
+                    {place.place.name_en}
+                  </p>
                   <p className="subtitle is-6 has-text-white">
                     {place.place.name_suffix}
                   </p>
@@ -298,26 +295,25 @@ class Profile extends React.Component {
               </div>
               <div className="content has-text-white">
                 <div className="field is-grouped is-grouped-centered">
-                <p className="control">
-                <button
-                    className="button is-danger is-small is-rounded is-outlined"
-                    onClick={() => this.deleteHotel(place.place.id)}
-                  >
-                    <FontAwesomeIcon icon="times" />
-              
-                  </button>
-                </p>
-                <p className="control">
-                <a
-                  className="button is-info is-small is-rounded is-outlined"
-                  href={place.place.references[0].url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Booking.com
-                </a>
-                </p>
-              </div>
+                  <p className="control">
+                    <button
+                      className="button is-danger is-small is-rounded is-outlined"
+                      onClick={() => this.deleteHotel(place.place.id)}
+                    >
+                      <FontAwesomeIcon icon="times" />
+                    </button>
+                  </p>
+                  <p className="control">
+                    <a
+                      className="button is-info is-small is-rounded is-outlined"
+                      href={place.place.references[0].url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Booking.com
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -343,21 +339,46 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-        <h2>Welcome, {this.props.isLogged.username}</h2>
+        <section>
+          <div className="mt-5">
+            <div className="container has-text-centered">
+              <div className="columns is-centered is-vcentered">
+                <div className="column is-3">
+                  <div className="content embossed-circle">
+                    <div className="circle-content">
+                    <p className="subtitle is-5 mb-5 is-size-5-mobile">
+                      <strong className="has-text-white">
+                      Welcome, {this.props.isLogged.username}
+                      </strong>
+                    </p>
+                    <p className="subtitle is-6 is-size-6-mobile">
+                    <strong className="has-text-white">Let's manage your saved  <br/>places and keep track of your trip activities</strong>
+                    </p>
+                    </div>
+                  </div>
+                </div>
+                {/* <div className="column is-4 has-text-left">
+                  <p className="subtitle is-5 is-size-5-mobile">Manage your list of points of interest, check map location and move them to your visited places list to keep track of your activities during the trip.</p>
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </section>
+    
         <section className="hero is-bold">
           <div className="hero-body">
             <div className="container">
               <div className="columns">
                 <div className="column is-half embossed-box mx-2">
-                <p className="title is-6 is-spaced mt-4">
+                  <p className="title is-6 is-spaced mt-4">
                     <FontAwesomeIcon icon="route" />
                     &nbsp;&nbsp;My Travel Plan
                   </p>
-                  
+
                   <div>
-                        <Calendar />
-                      </div>
-                      <p className="title is-6 is-spaced mt-4">
+                    <Calendar />
+                  </div>
+                  <p className="title is-6 is-spaced mt-4">
                     <FontAwesomeIcon icon="map-marker-alt" />
                     &nbsp;&nbsp;Places to visit
                   </p>
@@ -376,13 +397,12 @@ class Profile extends React.Component {
                       ? this.renderLoadingImage()
                       : this.renderHotels()}
                   </div>
-                  
+
                   <iframe
                     src={this.getAllPois()}
                     title="To-visit Map"
                     width="100%"
                     height="300"
-                    
                     sandbox
                   ></iframe>
                 </div>
@@ -404,25 +424,23 @@ class Profile extends React.Component {
                     sandbox
                   ></iframe>
                 </div>
-
-                
               </div>
               <div className="control my-5 mx-5">
                 <Link
-                    className="button is-black is-outlined is-rounded"
-                    to="/all-places"
-                  >
-                    <FontAwesomeIcon icon="map-marker-alt" />
-                    <span>&nbsp;Add more places to visit</span>
-                  </Link>
-                </div>
+                  className="button is-black is-outlined is-rounded"
+                  to="/all-places"
+                >
+                  <FontAwesomeIcon icon="map-marker-alt" />
+                  <span>&nbsp;Add more places to visit</span>
+                </Link>
+              </div>
             </div>
           </div>
-        </section>             
+        </section>
+        {/* <img src={MountFuji} alt="Mount Fuji" /> */}
       </div>
     );
   }
 }
-
 
 export default Profile;

@@ -8,7 +8,7 @@ import AllHotels from "./components/AllHotels";
 import LogIn from "./components/LogIn";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
-import LogoHolder from "./logo-holder.png";
+import Logo from "./japp&go-logo.svg";
 //Dependencias
 import { Link, Route, Redirect } from "react-router-dom";
 import UserService from "./services/UserService";
@@ -105,7 +105,7 @@ class App extends React.Component {
       <div className="container">
         <div className="navbar-brand">
           <Link className="navbar-item" to="/">
-            <img src={LogoHolder} alt="Logo"/>
+            <img src={Logo} alt="Logo"/>
           </Link>
           <span className="navbar-burger" data-target="navbarMenuHeroC">
             <span></span>

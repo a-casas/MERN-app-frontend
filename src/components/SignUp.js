@@ -12,7 +12,7 @@ const SignUp = (props) => {
             <div className="columns is-centered">
               <div className="column is-4">
                 <div className="embossed-login-box">
-                  <img src={Samurai} width="" />
+                  <img src={Samurai} alt="Samurai" />
                   <form onSubmit={props.submitSignUp}>
                     <div className="field">
                       <div className="control">
