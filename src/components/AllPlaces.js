@@ -2,11 +2,9 @@ import React from "react";
 import "../styles/AllPlaces.css";
 import { Link } from "react-router-dom";
 import PlacesService from "../services/PlacesService";
-import OnePoi from "./OnePoi";
-import { faSlack } from "@fortawesome/free-brands-svg-icons";
-import Switch from "react-switch";
 import "./AllPlaces.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 class AllPlaces extends React.Component {
   state = {
@@ -164,28 +162,27 @@ class AllPlaces extends React.Component {
 
   renderJapaneseArchitecturePois = () => {
     return this.state.japaneseArchitecture.places.map((poi, index) => {
-      // console.log(this.state.japaneseArchitecture.places);
       return (
-        <div class="column is-3">
+        <div className="column is-3">
           <Link
             to={`/all-places/${this.state.japaneseArchitecture.places[index].id}`}
             key={index}
           >
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-5by4">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-5by4">
                   <img src={poi.thumbnail_url} alt={poi.name_en} />
                 </figure>
               </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{poi.name_local}</p>
-                    <p class="subtitle is-6">{poi.name_en}</p>
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">{poi.name_local}</p>
+                    <p className="subtitle is-6">{poi.name_en}</p>
                   </div>
                 </div>
 
-                <div class="content">
+                <div className="content">
                   <p>Region: {poi.name_suffix}</p>
                 </div>
               </div>
@@ -198,28 +195,61 @@ class AllPlaces extends React.Component {
 
   renderWhatToSeePois = () => {
     return this.state.whatToSee.places.map((poi, index) => {
-      // console.log(this.state.whatToSee.places);
       return (
-        <div class="column is-3">
+        <div className="column is-3">
           <Link
             to={`/all-places/${this.state.whatToSee.places[index].id}`}
             key={index}
           >
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-5by4">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-5by4">
                   <img src={poi.thumbnail_url} alt={poi.name_en} />
                 </figure>
               </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{poi.name_local}</p>
-                    <p class="subtitle is-6">{poi.name_en}</p>
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">{poi.name_local}</p>
+                    <p className="subtitle is-6">{poi.name_en}</p>
                   </div>
                 </div>
 
-                <div class="content">
+                <div className="content">
+                  <p>Region: {poi.name_suffix}</p>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+      );
+    });
+  };
+
+  renderEditorsChoicePois = () => {
+    return this.state.editorsChoice.places.map((poi, index) => {
+      // console.log(this.state.whatToSee.places);
+      return (
+        <div className="column is-3">
+          <Link
+            to={`/all-places/${this.state.editorsChoice.places[index].id}`}
+            key={index}
+          >
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-5by4">
+                  <img src={poi.thumbnail_url} alt={poi.name_en} />
+                </figure>
+              </div>
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">{poi.name_local}</p>
+                    <p className="subtitle is-6">{poi.name_en}</p>
+                  </div>
+                </div>
+
+                <div className="content">
                   <p>Region: {poi.name_suffix}</p>
                 </div>
               </div>
@@ -232,28 +262,27 @@ class AllPlaces extends React.Component {
 
   renderHiddenGemsPois = () => {
     return this.state.hiddenGems.places.map((poi, index) => {
-      // console.log(this.state.hiddenGems.places);
       return (
-        <div class="column is-3">
+        <div className="column is-3">
           <Link
             to={`/all-places/${this.state.hiddenGems.places[index].id}`}
             key={index}
           >
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-5by4">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-5by4">
                   <img src={poi.thumbnail_url} alt={poi.name_en} />
                 </figure>
               </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{poi.name_local}</p>
-                    <p class="subtitle is-6">{poi.name_en}</p>
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">{poi.name_local}</p>
+                    <p className="subtitle is-6">{poi.name_en}</p>
                   </div>
                 </div>
 
-                <div class="content">
+                <div className="content">
                   <p>Region: {poi.name_suffix}</p>
                 </div>
               </div>
@@ -266,28 +295,27 @@ class AllPlaces extends React.Component {
 
   renderTopTouristAttractionsPois = () => {
     return this.state.topTouristAttractions.places.map((poi, index) => {
-      // console.log(this.state.topTouristAttractions.places);
       return (
-        <div class="column is-3">
+        <div className="column is-3">
           <Link
             to={`/all-places/${this.state.topTouristAttractions.places[index].id}`}
             key={index}
           >
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-5by4">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-5by4">
                   <img src={poi.thumbnail_url} alt={poi.name_en} />
                 </figure>
               </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{poi.name_local}</p>
-                    <p class="subtitle is-6">{poi.name_en}</p>
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">{poi.name_local}</p>
+                    <p className="subtitle is-6">{poi.name_en}</p>
                   </div>
                 </div>
 
-                <div class="content">
+                <div className="content">
                   <p>Region: {poi.name_suffix}</p>
                 </div>
               </div>
@@ -302,26 +330,26 @@ class AllPlaces extends React.Component {
     return this.state.mustVisitReligiousPlaces.places.map((poi, index) => {
       console.log(this.state.mustVisitReligiousPlaces.places);
       return (
-        <div class="column is-3">
+        <div className="column is-3">
           <Link
             to={`/all-places/${this.state.mustVisitReligiousPlaces.places[index].id}`}
             key={index}
           >
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-5by4">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-5by4">
                   <img src={poi.thumbnail_url} alt={poi.name_en} />
                 </figure>
               </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{poi.name_local}</p>
-                    <p class="subtitle is-6">{poi.name_en}</p>
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">{poi.name_local}</p>
+                    <p className="subtitle is-6">{poi.name_en}</p>
                   </div>
                 </div>
 
-                <div class="content">
+                <div className="content">
                   <p>Region: {poi.name_suffix}</p>
                 </div>
               </div>
@@ -334,28 +362,27 @@ class AllPlaces extends React.Component {
 
   renderPopularShoppingPlacesPois = () => {
     return this.state.popularShoppingPlaces.places.map((poi, index) => {
-      // console.log(this.state.popularShoppingPlaces.places);
       return (
-        <div class="column is-3">
+        <div className="column is-3">
           <Link
             to={`/all-places/${this.state.popularShoppingPlaces.places[index].id}`}
             key={index}
           >
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-5by4">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-5by4">
                   <img src={poi.thumbnail_url} alt={poi.name_en} />
                 </figure>
               </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{poi.name_local}</p>
-                    <p class="subtitle is-6">{poi.name_en}</p>
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">{poi.name_local}</p>
+                    <p className="subtitle is-6">{poi.name_en}</p>
                   </div>
                 </div>
 
-                <div class="content">
+                <div className="content">
                   <p>Region: {poi.name_suffix}</p>
                 </div>
               </div>
@@ -368,28 +395,27 @@ class AllPlaces extends React.Component {
 
   renderMustVisitHistoricalPlacesPois = () => {
     return this.state.mustVisitHistoricalPlaces.places.map((poi, index) => {
-      // console.log(this.state.mustVisitHistoricalPlaces.places);
       return (
-        <div class="column is-3">
+        <div className="column is-3">
           <Link
             to={`/all-places/${this.state.mustVisitHistoricalPlaces.places[index].id}`}
             key={index}
           >
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-5by4">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-5by4">
                   <img src={poi.thumbnail_url} alt={poi.name_en} />
                 </figure>
               </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{poi.name_local}</p>
-                    <p class="subtitle is-6">{poi.name_en}</p>
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">{poi.name_local}</p>
+                    <p className="subtitle is-6">{poi.name_en}</p>
                   </div>
                 </div>
 
-                <div class="content">
+                <div className="content">
                   <p>Region: {poi.name_suffix}</p>
                 </div>
               </div>
@@ -402,29 +428,28 @@ class AllPlaces extends React.Component {
 
   renderMustSeeBuddhistMonumentsPois = () => {
     return this.state.mustSeeBuddhistMonuments.places.map((poi, index) => {
-      // console.log(this.state.mustVisitHistoricalPlaces.places);
       return (
-        <div class="column is-3">
+        <div className="column is-3">
           <Link
             to={`/all-places/${this.state.mustSeeBuddhistMonuments.places[index].id}`}
             key={index}
           >
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-5by4">
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-5by4">
                   <img src={poi.thumbnail_url} alt={poi.name_en} />
                 </figure>
               </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{poi.name_local}</p>
-                    <p class="subtitle is-6">{poi.name_en}</p>
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-content">
+                    <p className="title is-4">{poi.name_local}</p>
+                    <p className="subtitle is-6">{poi.name_en}</p>
                   </div>
                 </div>
 
-                <div class="content">
-                <span class="has-text-info"> Region:</span> {poi.name_suffix}
+                <div className="content">
+                <span className="has-text-info"> Region:</span> {poi.name_suffix}
                 </div>
               </div>
             </div>
@@ -436,37 +461,53 @@ class AllPlaces extends React.Component {
 
   renderLoadingImage = () => {
     return (
-      // <img
-      //   src="https://psychiatryonline.org/specs/ux3/releasedAssets/images/spinner.gif"
-      //   alt="Loading"
-      // />
-      <progress class="progress is-large is-info mt-5" max="100">
+      <progress className="progress is-large is-info mt-5" max="100">
         60%
       </progress>
     );
   };
   render() {
     return (
-      <section class="hero">
-        <div class="hero-body">
-          <div class="container has-text-centered">
+      <div>
+      <section id="places-head" className="hero">
+        <div className="hero-body mb-6">
+          <div className="container has-text-centered">
+            <div className="columns">
+              <div className="column is-one-third is-offset-one-third">
+                <div className="content embossed-circle-places">
+                  <div className="circle-content">
+                  <h2 className="title is-3 has-text-white is-size-4-mobile">
+                      Japan awaits
+                    </h2>
+                   
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="hero">
+        <div className="hero-body">
+          <div className="container has-text-centered">
             {/* <h1>{this.state.japaneseArchitecture.name_long}</h1> */}
 
-            <div class="columns is-multiline">
-              <div class="column is-3">
+            <div className="columns is-multiline">
+              <div className="column is-3">
                 {/* <Switch onChange={this.handleChange} checked={this.state.japaneseArchitectureClicked}/> */}
-                <article class="media">
-                  <figure class="media-left">
-                    <p class="is-large">
+                <article className="media">
+                  <figure className="media-left">
+                    <p className="is-large">
                       <FontAwesomeIcon icon="search-location" size="2x" />
                     </p>
                   </figure>
-                  <div class="media-content">
-                    <div class="content has-text-left">
-                      <p class="mt-1">
+                  <div className="media-content">
+                    <div className="content has-text-left">
+                      <p className="mt-1">
                         <strong></strong>
                       </p>
-                      <div class="mt-4">
+                      <div className="mt-4">
                         <label className="form-switch">
                           <input
                             type="checkbox"
@@ -477,7 +518,7 @@ class AllPlaces extends React.Component {
                           What to see
                         </label>
                       </div>
-                      <div class="mt-2">
+                      <div className="mt-2">
                         <label className="form-switch">
                           <input
                             type="checkbox"
@@ -487,7 +528,7 @@ class AllPlaces extends React.Component {
                           Editor's choice
                         </label>
                       </div>
-                      <div class="mt-2">
+                      <div className="mt-2">
                         <label className="form-switch">
                           <input
                             type="checkbox"
@@ -497,7 +538,7 @@ class AllPlaces extends React.Component {
                           Hidden gems
                         </label>
                       </div>
-                      <div class="mt-2">
+                      <div className="mt-2">
                         <label className="form-switch">
                           <input
                             type="checkbox"
@@ -507,7 +548,7 @@ class AllPlaces extends React.Component {
                           Architecture
                         </label>
                       </div>
-                      <div class="mt-2">
+                      <div className="mt-2">
                         <label className="form-switch">
                           <input
                             type="checkbox"
@@ -517,7 +558,7 @@ class AllPlaces extends React.Component {
                           Tourist attractions
                         </label>
                       </div>
-                      <div class="mt-2">
+                      <div className="mt-2">
                         <label className="form-switch">
                           <input
                             type="checkbox"
@@ -529,7 +570,7 @@ class AllPlaces extends React.Component {
                           Religious places
                         </label>
                       </div>
-                      <div class="mt-2">
+                      <div className="mt-2">
                         <label className="form-switch">
                           <input
                             type="checkbox"
@@ -539,7 +580,7 @@ class AllPlaces extends React.Component {
                           Shopping places
                         </label>
                       </div>
-                      <div class="mt-2">
+                      <div className="mt-2">
                         <label className="form-switch">
                           <input
                             type="checkbox"
@@ -551,7 +592,7 @@ class AllPlaces extends React.Component {
                           Historical places
                         </label>
                       </div>
-                      <div class="mt-2">
+                      <div className="mt-2">
                         <label className="form-switch">
                           <input
                             type="checkbox"
@@ -575,6 +616,12 @@ class AllPlaces extends React.Component {
                 ? this.state.whatToSee.length === 0
                   ? this.renderLoadingImage()
                   : this.renderWhatToSeePois()
+                : null}
+
+                {this.state.editorsChoiceClicked
+                ? this.state.editorsChoice.length === 0
+                  ? this.renderLoadingImage()
+                  : this.renderEditorsChoicePois()
                 : null}
 
               {this.state.hiddenGemsClicked
@@ -628,6 +675,7 @@ class AllPlaces extends React.Component {
           </div>
         </div>
       </section>
+      </div>
     );
   }
 }

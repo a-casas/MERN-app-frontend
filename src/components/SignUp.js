@@ -24,9 +24,10 @@ const SignUp = (props)=>{
           onChange={(event)=>props.changeHandlerSignUp(event.target)}
         />
 
-        <button class="button is-primary" type="submit">Crear Usuario</button>
+        <button className="button is-primary" type="submit">Crear Usuario</button>
 
       </form>
+      {props.message && <p> {props.message}</p>}
     </div>
   )
 }

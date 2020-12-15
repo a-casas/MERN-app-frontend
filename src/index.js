@@ -5,11 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router} from 'react-router-dom';
 import 'bulma/css/bulma.css';
+import ScrollToTop from '../src/components/ScrollToTop'
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />      
+      <App /> 
+      <ScrollToTop />     
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

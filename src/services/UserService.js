@@ -18,7 +18,9 @@ class UserService {
   signup = (username, password) => {
     console.log(username)
     return this.service.post("/signup", {username, password})
-    .then(response => response.data)
+    .then(response => {
+console.log(response)
+      return response.data})
   }
 
   login = (username, password) => {

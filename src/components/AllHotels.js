@@ -3,6 +3,7 @@ import "../styles/AllPlaces.css";
 import { Link } from "react-router-dom";
 import PlacesService from "../services/PlacesService";
 import HandlePlaceService from "../services/HandlePlaceService";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class AllHotels extends React.Component {
   state = {
@@ -39,17 +40,25 @@ class AllHotels extends React.Component {
   renderButtons = (id) => {
     if (this.props.isLogged.username) {
       return (
-        <button onClick={() => this.addToHotelsBooking(id)}>Add to Booking</button>
+        <button className="button is-danger is-rounded is-inverted is-small mb-2" onClick={() => this.addToHotelsBooking(id)}><FontAwesomeIcon icon="plus-circle"/>&nbsp;My Hotels</button>
       );
     } else {
       return (
-        <div>
-          <Link to="/signup">
-            <button>Sign Up</button>
-          </Link>
-          <Link to="/login">
-            <button>Log In</button>{" "}
-          </Link>
+        <div className="field is-grouped is-grouped-centered mt-2">
+          <p className="control">
+            <Link to="/signup">
+              <button className="button is-link is-rounded is-outlined is-small ">
+                Sign Up
+              </button>
+            </Link>
+          </p>
+          <p className="control">
+            <Link to="/login">
+              <button className="button is-danger is-rounded is-outlined is-small">
+                Log In
+              </button>{" "}
+            </Link>
+          </p>
         </div>
       );
     }
@@ -59,46 +68,41 @@ class AllHotels extends React.Component {
     return this.state.hotels.places.map((poi, index) => {
       console.log(this.state.hotels.places);
       return (
-        <div class="column is-3" key={index}>
-          {/* <Link
-          to={`/all-hotels/${this.state.hotels.places[index].id}`}
-          key={index}
-        > */}
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-5by4">
+        <div className="column is-3" key={index}>
+         
+          <div className="card">
+            <div className="card-image">
+              <figure className="image is-4by3">
                 <img src={poi.thumbnail_url} alt={poi.name_en} />
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                <div class="content has-text-white">
+                <div className="content has-text-white">
                   <a
-                    class="button is-info is-small"
+                    className="button is-info is-small is-rounded is-inverted mr-2 mb-2"
                     href={poi.references[0].url}
                     target="_blank"
+                    rel="noreferrer"
                   >
                     Booking.com
                   </a>
                   {this.renderButtons(poi.id)}
                   <br />
                 </div>
-                  <p class="title is-4">{poi.name_local}</p>
-                  <p class="subtitle is-6">{poi.name_en}</p>
+              </figure>
+            </div>
+            <div className="card-content">
+              <div className="media">
+                <div className="media-content">
+               
+                  <p className="title is-5">{poi.name_local}</p>
                 </div>
               </div>
 
-              <div class="content">
+              <div className="content">
                 <p>Region: {poi.name_suffix}</p>
               </div>
               
             </div>
-            
-            <div>{/* {this.renderButtons()} */}</div>
+
           </div>
-          {/* <div> <OnePoi stateTransfer = {this.state.poisJapaneseArchitecture}/></div> */}
-          {/* </Link> */}
         </div>
       );
     });
@@ -110,7 +114,7 @@ class AllHotels extends React.Component {
       //   src="https://psychiatryonline.org/specs/ux3/releasedAssets/images/spinner.gif"
       //   alt="Loading"
       // />
-      <progress class="progress is-large is-info mt-5" max="100">
+      <progress className="progress is-large is-info mt-5" max="100">
         60%
       </progress>
     );
@@ -118,11 +122,11 @@ class AllHotels extends React.Component {
 
   render() {
     return (
-      <section class="hero">
-        <div class="hero-body">
-          <div class="container has-text-centered">
+      <section className="hero">
+        <div className="hero-body">
+          <div className="container has-text-centered">
             {/* <h1>{this.state.japaneseArchitecture.name_long}</h1> */}
-            <div class="columns is-multiline">
+            <div className="columns is-multiline">
               {this.state.hotels.length === 0
                 ? this.renderLoadingImage()
                 : this.renderHotels()}
