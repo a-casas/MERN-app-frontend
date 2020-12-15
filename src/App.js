@@ -27,7 +27,8 @@ class App extends React.Component {
     isLogged: {},
     newUser: { username: "", password: "" },
     loggingUser: { username: "", password: "" },
-    message: ""
+    message: "",
+
   };
   this.service = new UserService();
 }
@@ -55,26 +56,27 @@ class App extends React.Component {
       },
     });
   };
-  //LOGIN CONFIG
-  submitLogIn = (event) => {
-    event.preventDefault();
-    this.service
-      .login(this.state.loggingUser.username, this.state.loggingUser.password)
-      .then(() => {
-        this.checkIfLoggedIn();
-      })
-      .catch((err) => {
-        console.log("Sorry something went wrong on submit.", err);
-      });
-  };
-  changeHandlerLogIn = (_eventTarget) => {
-    this.setState({
-      loggingUser: {
-        ...this.state.loggingUser,
-        [_eventTarget.name]: _eventTarget.value,
-      },
-    });
-  };
+  // //LOGIN CONFIG
+  // submitLogIn = (event) => {
+  //   event.preventDefault();
+  //   this.service
+  //     .login(this.state.loggingUser.username, this.state.loggingUser.password)
+  //     .then(() => {
+  //       this.checkIfLoggedIn();
+  //     })
+  //     .catch((err) => {
+  //       console.log("Sorry something went wrong on submit.", err);
+  //       this.setState({logInMessage: err.message})
+  //     });
+  // };
+  // changeHandlerLogIn = (_eventTarget) => {
+  //   this.setState({
+  //     loggingUser: {
+  //       ...this.state.loggingUser,
+  //       [_eventTarget.name]: _eventTarget.value,
+  //     },
+  //   });
+  // };
   checkIfLoggedIn = () => {
     this.service.loggedin().then((result) => {
       this.setState({ isLogged: result });
