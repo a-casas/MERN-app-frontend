@@ -54,11 +54,11 @@ const SignUp = (props) => {
                     </button>
                   </form>
                   {props.message && (
-                    <article class="message is-danger has-text-centered mt-3">
-                      <div class="message-header">
+                    <article className="message is-danger has-text-centered mt-3">
+                      <div className="message-header">
                         <p>Error</p>
                       </div>
-                      <div class="message-body">
+                      <div className="message-body">
                         <p>{props.message}</p>
                       </div>
                     </article>

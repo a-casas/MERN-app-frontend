@@ -92,11 +92,11 @@ class LogIn extends React.Component {
                       </button>
                     </form>
                     {this.state.message && (
-                      <article class="message is-danger has-text-centered mt-3">
-                        <div class="message-header">
+                      <article className="message is-danger has-text-centered mt-3">
+                        <div className="message-header">
                           <p>Error</p>
                         </div>
-                        <div class="message-body">
+                        <div className="message-body">
                           <p> {this.state.message}</p>
                         </div>
                       </article>

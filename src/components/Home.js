@@ -55,11 +55,19 @@ const Home = (props) => {
       </section>
       <section id="home-end" className="section has-background is-medium">
         <div className="container">
-          <h2 id="home-two" className="title is-spaced is-size-4-mobile pb-5 has-text-grey-dark"><span class="icon has-text-danger-dark"><FontAwesomeIcon icon="compass" /></span>&nbsp;&nbsp;Plan your travel</h2>
+          <h2
+            id="home-two"
+            className="title is-spaced is-size-4-mobile pb-5 has-text-grey-dark"
+          >
+            <span className="icon has-text-danger-dark">
+              <FontAwesomeIcon icon="compass" />
+            </span>
+            &nbsp;&nbsp;Plan your travel
+          </h2>
           <div className="columns mb-6">
             <div className="column is-4 mb-6">
               <div className="is-usp embossed-box">
-                <img src={ToriiSunset} alt="Torii Gate"/>
+                <img src={ToriiSunset} alt="Torii Gate" />
                 <h3 className="title is-4 is-spaced is-size-5-mobile my-5 mx-5">
                   Share the experience
                 </h3>
@@ -94,10 +102,8 @@ const Home = (props) => {
                   Get the most out of it
                 </h3>
                 <p className="subtitle is-5 my-5 mx-5">
-                  Log in with your <Link to="/signup">
-                        account
-                      </Link> to take advantage of all the app's
-                  features.
+                  Log in with your <Link to="/signup">account</Link> to take
+                  advantage of all the app's features.
                 </p>
                 <div className="control my-5 mx-5">
                   <Link
@@ -112,15 +118,16 @@ const Home = (props) => {
             </div>
             <div className="column is-4 mb-6">
               <div className="is-usp embossed-box">
-                <img src={FujiSakura} alt="Mount Fuji & Sakura"/>
+                <img src={FujiSakura} alt="Mount Fuji & Sakura" />
                 <h3 className="title is-4 is-spaced is-size-5-mobile my-5 mx-5">
                   Discover magical places
                 </h3>
                 <p className="subtitle is-5 my-5 mx-5">
-                Browse the collections, add places to your travel planner and manage them in real time.
+                  Browse the collections, add places to your travel planner and
+                  manage them in real time.
                 </p>
                 <div className="control my-5 mx-5">
-                <Link
+                  <Link
                     className="button is-danger is-outlined is-rounded"
                     to="/all-places"
                   >
@@ -133,30 +140,33 @@ const Home = (props) => {
           </div>
         </div>
         <div className="container has-text-centered is-fluid mb-5">
-        <div class="columns">
-        <div class="column">
-        <h3 className="title is-3 is-spaced is-size-4-mobile pb-5 mt-6 has-text-grey-dark"><span class="icon has-text-danger-dark"><FontAwesomeIcon icon="map-marked-alt" /></span>&nbsp;&nbsp;Map preview</h3>
-          
-          <iframe className="embossed-box"
-            src="https://travel.sygic.com/widget/#/?guids=poi:19822,poi:19967,poi:19820,poi:22726,poi:19841,poi:48608,poi:26909,poi:43300,poi:5249835,poi:36922040,poi:26931,poi:48611,poi:26858,poi:26915,poi:50724,poi:50833,poi:62931,poi:7889929,poi:5097628,poi:7780061,poi:62936&unscrollable&unclickable&lang=en"
-            title="Poi Map"
-            width="100%"
-            height="700"
-            // onLoad={this.hideSpinner}
-            sandbox
-          ></iframe>
+          <h3 className="title is-3 is-spaced is-size-4-mobile pb-5 mt-6 has-text-grey-dark">
+            <span className="icon has-text-danger-dark">
+              <FontAwesomeIcon icon="map-marked-alt" />
+            </span>
+            &nbsp;&nbsp;Map preview
+          </h3>
+          <div className="columns">
+            <div className="column embossed-box">
+              <iframe className="mb-5"
+                src="https://travel.sygic.com/widget/#/?guids=poi:19822,poi:19967,poi:19820,poi:22726,poi:19841,poi:48608,poi:26909,poi:43300,poi:5249835,poi:36922040,poi:26931,poi:48611,poi:26858,poi:26915,poi:50724,poi:50833,poi:62931,poi:7889929,poi:5097628,poi:7780061,poi:62936&unscrollable&unclickable&lang=en"
+                title="Poi Map"
+                width="100%"
+                height="700"
+                // onLoad={this.hideSpinner}
+                sandbox
+              ></iframe>
+            </div>
           </div>
         </div>
-        </div>
-        
-                <Link
-                    className="button is-black is-outlined is-rounded my-5"
-                    to="/all-places"
-                  >
-                    <FontAwesomeIcon icon="plus-circle" />
-                    <span>&nbsp;Add places to your travel plan</span>
-                  </Link>
-               
+
+        <Link
+          className="button is-black is-outlined is-rounded my-5"
+          to="/all-places"
+        >
+          <FontAwesomeIcon icon="plus-circle" />
+          <span>&nbsp;Add places to your travel plan</span>
+        </Link>
       </section>
     </div>
   );

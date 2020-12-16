@@ -135,19 +135,19 @@ class App extends React.Component {
                 <div id="navbarMenuHeroC" className="navbar-menu">
                   <div className="navbar-end">
                     <Link className="navbar-item" to="/">
-                      <span class="icon has-text-danger-dark">
+                      <span className="icon has-text-danger-dark">
                         <FontAwesomeIcon icon="home" />
                       </span>
                       <span>Home</span>
                     </Link>
                     <Link className="navbar-item" to="/all-places">
-                      <span class="icon has-text-danger-dark">
+                      <span className="icon has-text-danger-dark">
                         <FontAwesomeIcon icon="map-marker-alt" />
                       </span>
                       <span>Places</span>
                     </Link>
                     <Link className="navbar-item" to="/all-hotels">
-                      <span class="icon has-text-danger-dark">
+                      <span className="icon has-text-danger-dark">
                         <FontAwesomeIcon icon="h-square" />
                       </span>
                       <span>Hotels</span>
@@ -280,7 +280,7 @@ class App extends React.Component {
                   <li className="is-active">
                     {" "}
                     <Link className="" to="/">
-                      <span class="icon has-text-danger-dark">
+                      <span className="icon has-text-danger-dark">
                         <FontAwesomeIcon icon="home" />
                       </span>
                       <span>Home</span>
@@ -288,7 +288,7 @@ class App extends React.Component {
                   </li>
                   <li>
                     <Link className="" to="/all-places">
-                      <span class="icon has-text-danger-dark">
+                      <span className="icon has-text-danger-dark">
                         <FontAwesomeIcon icon="map-marker-alt" />
                       </span>
                       <span>Places</span>
@@ -296,7 +296,7 @@ class App extends React.Component {
                   </li>
                   <li>
                     <Link className="" to="/all-hotels">
-                      <span class="icon has-text-danger-dark">
+                      <span className="icon has-text-danger-dark">
                         <FontAwesomeIcon icon="h-square" />
                       </span>
                       <span>Hotels</span>
