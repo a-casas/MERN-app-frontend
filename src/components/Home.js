@@ -71,7 +71,7 @@ const Home = (props) => {
                   <ShareLink
                     text="I am planning a trip to japan using this Travel Planner App! Who's up?! Let me know to plan it together!"
                     hashtags="IronHackersZergJapan,HereWeGoJapan,TravelTogueter"
-                    link="https://japantripplanner.com"
+                    link="https://jappandgo.netlify.app/"
                   >
                     {(link) => (
                       <a
