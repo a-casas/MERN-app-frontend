@@ -17,10 +17,6 @@ input {
 .App {
   text-align: center;
   background: var(--background);
-  /* background-image: url("./bg-test.svg");
-  
-  background-position: center;
-  background-size: cover; */
   scroll-behavior: smooth;
 }
 
@@ -50,17 +46,7 @@ input {
   color: #82020e;
 }
 
-.header-bg {
-  /* background-image: url("./header-bg.png"); */
-  background-position: center;
-  background-size: cover;
-}
 
-.login-bg {
-  /* background-image: url("./login-bg.png"); */
-  background-position: center;
-  background-size: cover;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -92,7 +78,6 @@ input {
 .embossed-circle {
   border-radius: 50%;
   position: relative;
-
   width: 100%;
   padding-top: 100%; /* 1:1 Aspect Ratio */
   box-shadow: 8px 8px 15px var(--shadowDark), -8px -8px 15px var(--shadowLight);
@@ -103,7 +88,6 @@ input {
 .embossed-circle-places {
   border-radius: 50%;
   position: relative;
-
   width: 100%;
   padding-top: 100%; /* 1:1 Aspect Ratio */
   box-shadow: 8px 8px 15px var(--shadowDark), -8px -8px 15px var(--shadowLight);
@@ -197,6 +181,12 @@ input {
 #home-one {
   background-image: url("./fuji-anim.gif");
   background-size: cover;
+  background-position: center bottom;
+}
+
+#home-end {
+  background-image: url("./monekys-onsen.gif");
+  background-repeat: no-repeat;
   background-position: center bottom;
 }
 

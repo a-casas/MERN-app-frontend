@@ -53,7 +53,7 @@ const Home = (props) => {
           </div>
         </div>
       </section>
-      <section className="section has-background is-medium">
+      <section id="home-end" className="section has-background is-medium">
         <div className="container">
           <h2 id="home-two" className="title is-spaced is-size-4-mobile pb-5 has-text-grey-dark"><span class="icon has-text-danger-dark"><FontAwesomeIcon icon="compass" /></span>&nbsp;&nbsp;Plan your travel</h2>
           <div className="columns mb-6">
@@ -87,7 +87,7 @@ const Home = (props) => {
                 </div>
               </div>
             </div>
-            <div className="column is-4">
+            <div className="column is-4 mb-6">
               <div className="is-usp embossed-box">
                 <img src={AppStreet} alt="App User" />
                 <h3 className="title is-4 is-spaced is-size-5-mobile my-5 mx-5">
@@ -110,7 +110,7 @@ const Home = (props) => {
                 </div>
               </div>
             </div>
-            <div className="column is-4">
+            <div className="column is-4 mb-6">
               <div className="is-usp embossed-box">
                 <img src={FujiSakura} alt="Mount Fuji & Sakura"/>
                 <h3 className="title is-4 is-spaced is-size-5-mobile my-5 mx-5">
