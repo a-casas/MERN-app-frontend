@@ -357,9 +357,6 @@ class Profile extends React.Component {
                     </div>
                   </div>
                 </div>
-                {/* <div className="column is-4 has-text-left">
-                  <p className="subtitle is-5 is-size-5-mobile">Manage your list of points of interest, check map location and move them to your visited places list to keep track of your activities during the trip.</p>
-                </div> */}
               </div>
             </div>
           </div>
