@@ -340,7 +340,7 @@ class Profile extends React.Component {
     return (
       <div>
         <section>
-          <div className="mt-5">
+          <div id="profile-bg" className="mt-5">
             <div className="container has-text-centered">
               <div className="columns is-centered is-vcentered">
                 <div className="column is-3">
@@ -348,7 +348,7 @@ class Profile extends React.Component {
                     <div className="circle-content">
                     <p className="subtitle is-5 mb-5 is-size-5-mobile">
                       <strong className="has-text-white">
-                      Welcome, {this.props.isLogged.username}
+                      {this.props.isLogged.username}'s Travel Planner
                       </strong>
                     </p>
                     <p className="subtitle is-6 is-size-6-mobile">
