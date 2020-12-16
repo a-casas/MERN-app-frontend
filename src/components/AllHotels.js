@@ -3,7 +3,7 @@ import "../styles/AllPlaces.css";
 import { Link } from "react-router-dom";
 import PlacesService from "../services/PlacesService";
 import HandlePlaceService from "../services/HandlePlaceService";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class AllHotels extends React.Component {
   state = {
@@ -11,7 +11,7 @@ class AllHotels extends React.Component {
   };
   HandlePlaceService = new HandlePlaceService();
   service = new PlacesService();
-  
+
   componentDidMount() {
     this.service
       .getMultipleHotelPois()
@@ -23,12 +23,9 @@ class AllHotels extends React.Component {
       .catch((err) => console.error(err));
   }
 
-
-  // problema para coger la id y llevarla al travel planner
   addToHotelsBooking = (id) => {
-    this.HandlePlaceService
-      .hotelsBooking(id, this.props.isLogged._id)
-      // .hotelsBooking(this.props.state.hotels.places.id, this.props.isLogged._id)
+    this.HandlePlaceService.hotelsBooking(id, this.props.isLogged._id)
+
       .then((result) => {
         console.log(result);
       })
@@ -40,7 +37,13 @@ class AllHotels extends React.Component {
   renderButtons = (id) => {
     if (this.props.isLogged.username) {
       return (
-        <button className="button is-danger is-rounded is-inverted is-small mb-2" onClick={() => this.addToHotelsBooking(id)}><FontAwesomeIcon icon="plus-circle"/>&nbsp;My Hotels</button>
+        <button
+          className="button is-danger is-rounded is-inverted is-small mb-2"
+          onClick={() => this.addToHotelsBooking(id)}
+        >
+          <FontAwesomeIcon icon="plus-circle" />
+          &nbsp;My Hotels
+        </button>
       );
     } else {
       return (
@@ -69,7 +72,6 @@ class AllHotels extends React.Component {
       console.log(this.state.hotels.places);
       return (
         <div className="column is-3" key={index}>
-         
           <div className="card">
             <div className="card-image">
               <figure className="image is-4by3">
@@ -91,7 +93,6 @@ class AllHotels extends React.Component {
             <div className="card-content">
               <div className="media">
                 <div className="media-content">
-               
                   <p className="title is-5">{poi.name_local}</p>
                 </div>
               </div>
@@ -99,9 +100,7 @@ class AllHotels extends React.Component {
               <div className="content">
                 <p>Region: {poi.name_suffix}</p>
               </div>
-              
             </div>
-
           </div>
         </div>
       );
@@ -110,10 +109,7 @@ class AllHotels extends React.Component {
 
   renderLoadingImage = () => {
     return (
-      // <img
-      //   src="https://psychiatryonline.org/specs/ux3/releasedAssets/images/spinner.gif"
-      //   alt="Loading"
-      // />
+      
       <progress className="progress is-large is-info mt-5" max="100">
         60%
       </progress>
@@ -125,7 +121,6 @@ class AllHotels extends React.Component {
       <section className="hero">
         <div className="hero-body">
           <div className="container has-text-centered">
-            {/* <h1>{this.state.japaneseArchitecture.name_long}</h1> */}
             <div className="columns is-multiline">
               {this.state.hotels.length === 0
                 ? this.renderLoadingImage()

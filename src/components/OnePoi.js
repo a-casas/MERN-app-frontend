@@ -167,10 +167,15 @@ class OnePoi extends Component {
                 </div>
               </div>
               <div className="column is-5">
-                <p className="title is-4 is-spaced"><FontAwesomeIcon icon="info-circle"/>
-                &nbsp;&nbsp;Description</p>
+                <p className="title is-4 is-spaced">
+                  <FontAwesomeIcon icon="info-circle" />
+                  &nbsp;&nbsp;Description
+                </p>
                 <p className="">{this.state.place.description.text}</p>
-                <p className="title is-4 is-spaced mt-6"><FontAwesomeIcon icon="list-ul"/>&nbsp;&nbsp;Recommendations</p>
+                <p className="title is-4 is-spaced mt-6">
+                  <FontAwesomeIcon icon="list-ul" />
+                  &nbsp;&nbsp;Recommendations
+                </p>
                 <p>{this.state.place.opening_hours_note} </p>
               </div>
             </div>

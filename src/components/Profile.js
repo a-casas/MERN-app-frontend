@@ -8,7 +8,6 @@ import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import App from "../App";
 import { Link, Route, Redirect } from "react-router-dom";
-import MountFuji from "../fuji-anim.gif";
 
 class Profile extends React.Component {
   state = {
@@ -83,21 +82,6 @@ class Profile extends React.Component {
       </progress>
     );
   };
-
-  printDocument() {
-    const input = document.getElementById("divToPrint");
-    html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      // const pdf = new jsPDF (
-      //   width 920mm
-      //   32432
-      //   dsf
-      // )
-      // pdf.addImage(imgData, 'JPEG', 0, 0);
-      // pdf.output('dataurlnewwindow');
-      imgData.save("download.png");
-    });
-  }
 
   moveFromWantToAlready = (poi) => {
     this.HandlePlaceService.fromWantToAlready(
@@ -346,14 +330,17 @@ class Profile extends React.Component {
                 <div className="column is-3">
                   <div className="content embossed-circle">
                     <div className="circle-content">
-                    <p className="subtitle is-5 mb-5 is-size-5-mobile">
-                      <strong className="has-text-white">
-                      {this.props.isLogged.username}'s Travel Planner
-                      </strong>
-                    </p>
-                    <p className="subtitle is-6 is-size-6-mobile">
-                    <strong className="has-text-white">Let's manage your saved  <br/>places and keep track of your trip activities</strong>
-                    </p>
+                      <p className="subtitle is-5 mb-5 is-size-5-mobile">
+                        <strong className="has-text-white">
+                          {this.props.isLogged.username}'s Travel Planner
+                        </strong>
+                      </p>
+                      <p className="subtitle is-6 is-size-6-mobile">
+                        <strong className="has-text-white">
+                          Let's manage your saved <br />
+                          places and keep track of your trip activities
+                        </strong>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -361,7 +348,7 @@ class Profile extends React.Component {
             </div>
           </div>
         </section>
-    
+
         <section className="hero is-bold">
           <div className="hero-body">
             <div className="container">

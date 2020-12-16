@@ -1,12 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, Route, Redirect, withRouter } from "react-router-dom";
-// import RedPoint from "../red-point.png"
-// import { render } from "@testing-library/react";
+
 
 import UserService from "../services/UserService";
 class LogIn extends React.Component {
-  // const {submitLogIn, loggingUser, changeHandlerLogIn} = props
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -56,7 +55,7 @@ class LogIn extends React.Component {
               <div className="columns is-centered">
                 <div className="column is-4">
                   <div className="embossed-login-box">
-                    {/* <img src={RedPoint} width="200px" /> */}
+                    
                     <form onSubmit={(e) => this.submitLogIn(e)}>
                       <div className="field">
                         <div className="control">
@@ -65,7 +64,6 @@ class LogIn extends React.Component {
                             type="text"
                             name="username"
                             placeholder="Name"
-                            // value={props.loggingUser.username}
                             onChange={(event) =>
                               this.changeHandlerLogIn(event.target)
                             }
@@ -80,7 +78,6 @@ class LogIn extends React.Component {
                             type="password"
                             name="password"
                             placeholder="********"
-                            // value={props.loggingUser.password}
                             onChange={(event) =>
                               this.changeHandlerLogIn(event.target)
                             }

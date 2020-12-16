@@ -80,7 +80,7 @@ class App extends React.Component {
             this.setState({ message: result.message });
           }
           this.props.history.push("/login");
-        } //  this.setState({this.state.newUser.username: "", this.state.newUser.password: ""})
+        } 
       })
       .catch((err) => {
         console.log(err);
@@ -94,27 +94,7 @@ class App extends React.Component {
       },
     });
   };
-  // //LOGIN CONFIG
-  // submitLogIn = (event) => {
-  //   event.preventDefault();
-  //   this.service
-  //     .login(this.state.loggingUser.username, this.state.loggingUser.password)
-  //     .then(() => {
-  //       this.checkIfLoggedIn();
-  //     })
-  //     .catch((err) => {
-  //       console.log("Sorry something went wrong on submit.", err);
-  //       this.setState({logInMessage: err.message})
-  //     });
-  // };
-  // changeHandlerLogIn = (_eventTarget) => {
-  //   this.setState({
-  //     loggingUser: {
-  //       ...this.state.loggingUser,
-  //       [_eventTarget.name]: _eventTarget.value,
-  //     },
-  //   });
-  // };
+  
   checkIfLoggedIn = () => {
     this.service.loggedin().then((result) => {
       this.setState({ isLogged: result });

@@ -1,15 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap");
 
 :root {
-  /* --shadowDark: #D9DDE6; */
   --shadowDark: #caccd4c5;
   --background: #e4e9f2;
-  /* --shadowLight: #EFF5FE; */
   --shadowLight: #eff5fe;
 }
 
 * {
   font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+input {
+  background: var(--shadowDark) !important;
 }
 
 .App {
@@ -124,51 +126,6 @@
   background-image: none;
 }
 
-input {
-  background: var(--shadowDark) !important;
-}
-
-#nav-toggle-state {
-  display: none;
-}
-
-#nav-toggle-state:checked ~ .nav-menu {
-  display: block;
-}
-
-#home-one {
-  background-image: url("./fuji-anim.gif");
-  background-size: cover;
-  background-position: center bottom;
-}
-
-#places-head {
-  background-image: url("./places-head-bg.png");
-  background-size: cover;
-  background-position: center center;
-}
-
-#login-bg {
-  background-image: url("./torii-login.gif");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-#profile-bg {
-  background-image: url("./onsen.gif");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-} 
-
-#poi {
-  background-image: url("./rain.gif");
-  
-  background-repeat: no-repeat;
-  background-position: center bottom;
-}
-
 .scroll-down {
   opacity: 1;
   -webkit-transition: all 2s ease-in 5s;
@@ -227,4 +184,50 @@ input {
     -ms-transform: translateY(-5px);
     transform: translateY(-5px);
   }
+}
+
+#nav-toggle-state {
+  display: none;
+}
+
+#nav-toggle-state:checked ~ .nav-menu {
+  display: block;
+}
+
+#home-one {
+  background-image: url("./fuji-anim.gif");
+  background-size: cover;
+  background-position: center bottom;
+}
+
+#places-head {
+  background-image: url("./places-head-bg.png");
+  background-size: cover;
+  background-position: center center;
+}
+
+#places-bg {
+  background-image: url("./zen-stone.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+#login-bg {
+  background-image: url("./torii-login.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#profile-bg {
+  background-image: url("./onsen.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#poi {
+  background-image: url("./rain.gif");
+  background-repeat: no-repeat;
+  background-position: center bottom;
 }

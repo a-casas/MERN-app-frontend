@@ -486,14 +486,11 @@ class AllPlaces extends React.Component {
             </div>
           </div>
         </section>
-        <section className="hero">
+        <section id="places-bg" className="hero">
           <div className="hero-body">
             <div className="container has-text-centered">
-              {/* <h1>{this.state.japaneseArchitecture.name_long}</h1> */}
-
               <div className="columns is-multiline">
                 <div className="column is-3">
-                  {/* <Switch onChange={this.handleChange} checked={this.state.japaneseArchitectureClicked}/> */}
                   <article className="media">
                     <figure className="media-left">
                       <p className="is-large">
@@ -606,9 +603,7 @@ class AllPlaces extends React.Component {
                     </div>
                   </article>
                 </div>
-                {/* {this.state.whatToSee.length === 0
-                ? this.renderLoadingImage()
-                : this.renderWhatToSeePois()} */}
+               
 
                 {this.state.whatToSeeClicked
                   ? this.state.whatToSee.length === 0
@@ -678,63 +673,3 @@ class AllPlaces extends React.Component {
   }
 }
 export default AllPlaces;
-
-// import React from 'react'
-
-// import '../styles/AllPlaces.css'
-
-// import { Link } from 'react-router-dom';
-
-// class AllPlaces extends React.Component {
-
-//   state = {
-//     places: []
-//   }
-
-//   componentDidMount(){
-//     // fetch('https://api.jikan.moe/v3/search/place?q=&order_by=score&sort=desc&page=1')
-//     fetch('https://api.jikan.moe/v3/search/place?q=&order_by=score&sort=desc&page=1')
-//     .then((data)=>{
-//       return data.json()
-//     })
-//     .then((dataJSON)=>{
-//       this.setState({places: dataJSON.results})
-//     })
-//     .catch((err)=>{
-//       console.log(err)
-//     })
-//   }
-
-//   renderMangas = ()=>{
-//     return this.state.places.map((place, index)=>{
-//       return(
-//         <Link to={`/all-places/${place.mal_id}`} key={index}>
-//           <div className="place-container">
-//             <img src={place.image_url} alt={place.title}/>
-//             <div className="title-and-score">
-//               <h3>{place.title}</h3>
-//               <p>{place.score}</p>
-//             </div>
-//           </div>
-//         </Link>
-//       )
-//     })
-//   }
-
-//   renderLoadingImage = ()=>{
-//     return <img src="https://i.pinimg.com/originals/5f/62/12/5f62121edecbe2adff3ff4207d8d3cd5.gif" alt="Loading"/>
-//   }
-
-//   render(){
-//     return(
-//       <div className="AllPlaces">
-//         <h2>All Places</h2>
-//         <div className="all-places-container">
-//           {this.state.places.length === 0 ? this.renderLoadingImage() : this.renderMangas()}
-//         </div>
-//       </div>
-//     )
-//   }
-// }
-
-// export default AllPlaces
