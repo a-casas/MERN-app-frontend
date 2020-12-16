@@ -2,10 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, Route, Redirect, withRouter } from "react-router-dom";
 
-
 import UserService from "../services/UserService";
 class LogIn extends React.Component {
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -55,7 +53,6 @@ class LogIn extends React.Component {
               <div className="columns is-centered">
                 <div className="column is-4">
                   <div className="embossed-login-box">
-                    
                     <form onSubmit={(e) => this.submitLogIn(e)}>
                       <div className="field">
                         <div className="control">
