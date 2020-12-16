@@ -126,6 +126,7 @@ class App extends React.Component {
       .then((result) => {
         console.log(result);
         this.checkIfLoggedIn();
+        this.props.history.push("/");
       })
       .catch((err) => {
         console.log(err);
