@@ -352,8 +352,8 @@ class Profile extends React.Component {
         <section className="hero is-bold">
           <div className="hero-body">
             <div className="container">
-              <div className="columns">
-                <div className="column is-half embossed-box mx-2">
+              <div className="columns mb-5">
+                <div className="column is-half embossed-box mx-2 mb-5">
                   <p className="title is-6 is-spaced mt-4">
                     <FontAwesomeIcon icon="route" />
                     &nbsp;&nbsp;My Travel Plan
@@ -390,7 +390,7 @@ class Profile extends React.Component {
                     sandbox
                   ></iframe>
                 </div>
-                <div className="column is-half embossed-box mx-2">
+                <div className="column is-half embossed-box mx-2 mb-5">
                   <p className="title is-6 is-spaced mt-4">
                     <FontAwesomeIcon icon="check-circle" />
                     &nbsp;&nbsp;Already visited
@@ -409,13 +409,13 @@ class Profile extends React.Component {
                   ></iframe>
                 </div>
               </div>
-              <div className="control my-5 mx-5">
+              <div className="control my-6 mx-5">
                 <Link
                   className="button is-black is-outlined is-rounded"
                   to="/all-places"
                 >
                   <FontAwesomeIcon icon="map-marker-alt" />
-                  <span>&nbsp;Add more places to visit</span>
+                  <span>&nbsp;Add more places</span>
                 </Link>
               </div>
             </div>

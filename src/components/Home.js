@@ -139,16 +139,16 @@ const Home = (props) => {
             </div>
           </div>
         </div>
-        <div className="container has-text-centered is-fluid mb-5">
+        <div className="container has-text-centered is-fluid mb-6">
           <h3 className="title is-3 is-spaced is-size-4-mobile pb-5 mt-6 has-text-grey-dark">
             <span className="icon has-text-danger-dark">
               <FontAwesomeIcon icon="map-marked-alt" />
             </span>
             &nbsp;&nbsp;Map preview
           </h3>
-          <div className="columns">
-            <div className="column embossed-box">
-              <iframe className="mb-5"
+          <div className="columns embossed-box mb-6">
+            <div className="column">
+              <iframe className="mb-6"
                 src="https://travel.sygic.com/widget/#/?guids=poi:19822,poi:19967,poi:19820,poi:22726,poi:19841,poi:48608,poi:26909,poi:43300,poi:5249835,poi:36922040,poi:26931,poi:48611,poi:26858,poi:26915,poi:50724,poi:50833,poi:62931,poi:7889929,poi:5097628,poi:7780061,poi:62936&unscrollable&unclickable&lang=en"
                 title="Poi Map"
                 width="100%"
@@ -161,7 +161,7 @@ const Home = (props) => {
         </div>
 
         <Link
-          className="button is-black is-outlined is-rounded my-5"
+          className="button is-black is-outlined is-rounded my-6"
           to="/all-places"
         >
           <FontAwesomeIcon icon="plus-circle" />
