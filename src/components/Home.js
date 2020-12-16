@@ -132,8 +132,11 @@ const Home = (props) => {
             </div>
           </div>
         </div>
-        <div className="container has-text-centered is-fluid">
+        <div className="container has-text-centered is-fluid mb-5">
+        <div class="columns">
+        <div class="column">
         <h3 className="title is-3 is-spaced is-size-4-mobile pb-5 mt-6 has-text-grey-dark"><span class="icon has-text-danger-dark"><FontAwesomeIcon icon="map-marked-alt" /></span>&nbsp;&nbsp;Map preview</h3>
+          
           <iframe className="embossed-box"
             src="https://travel.sygic.com/widget/#/?guids=poi:19822,poi:19967,poi:19820,poi:22726,poi:19841,poi:48608,poi:26909,poi:43300,poi:5249835,poi:36922040,poi:26931,poi:48611,poi:26858,poi:26915,poi:50724,poi:50833,poi:62931,poi:7889929,poi:5097628,poi:7780061,poi:62936&unscrollable&unclickable&lang=en"
             title="Poi Map"
@@ -142,6 +145,8 @@ const Home = (props) => {
             // onLoad={this.hideSpinner}
             sandbox
           ></iframe>
+          </div>
+        </div>
         </div>
         
                 <Link
