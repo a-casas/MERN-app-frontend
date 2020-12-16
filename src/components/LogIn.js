@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, Route, Redirect, withRouter } from "react-router-dom";
 // import RedPoint from "../red-point.png"
 // import { render } from "@testing-library/react";
+
 import UserService from "../services/UserService";
 class LogIn extends React.Component {
   // const {submitLogIn, loggingUser, changeHandlerLogIn} = props
