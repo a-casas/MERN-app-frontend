@@ -60,8 +60,8 @@ const Footer = (props)=>{
 
           <div className="control">
             <div className="tags has-addons">
-              <span className="tag is-dark">Rest</span>
-              <span className="tag is-primary">API</span>
+              <span className="tag is-dark">RestAPI</span>
+              <span className="tag is-danger">Sygic Travel</span>
             </div>
           </div>
         </div>
