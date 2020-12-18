@@ -79,7 +79,7 @@ class App extends React.Component {
           if (result.message) {
             this.setState({ message: result.message });
           }
-          this.props.history.push("/login");
+          // this.props.history.push("/login");
         } 
       })
       .catch((err) => {
