@@ -62,7 +62,7 @@ const Home = (props) => {
             <span className="icon has-text-danger-dark">
               <FontAwesomeIcon icon="compass" />
             </span>
-            &nbsp;&nbsp;Plan your travel
+            &nbsp;&nbsp;Plan your trip
           </h2>
           <div className="columns mb-6">
             <div className="column is-4 mb-6">
