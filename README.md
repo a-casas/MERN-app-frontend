@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+![japp go-logo](https://user-images.githubusercontent.com/69347464/103155598-42ba3500-4799-11eb-9194-81b1d373b06e.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MERN-Stack Responsive Web APP | japp&go Travel Planner
 
-## Available Scripts
+## Introduction
 
-In the project directory, you can run:
+japp&go Travel Planner is a MERN Stack responsive Web App 
 
-### `npm start`
+### What does this app do
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Assists to organize activities on a trip to Japan.
+- Helps to find amazing and interesting places to visit and add them to your plans list.
+- Provides a map with your chosen POIs. The map updates in real-time when you manage these locations.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![japp go-responsive](https://user-images.githubusercontent.com/69347464/103156075-07ba0080-479d-11eb-94e2-c153c2b65e40.png)
 
-### `npm test`
+## Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Sign up to start planning your trip or, if you prefer, use this account with prefilled example:
 
-### `npm run build`
+- **`User`**: pablo
+- **`Password`**: pablosky
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Try it!
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Link to the app: [japp&go Travel Planner](https://jappandgo.netlify.app/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![japp go-ipad](https://user-images.githubusercontent.com/69347464/103156053-d8a38f00-479c-11eb-8905-201770def352.png)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## +Backend
+GitHub repo: [japp&go Backend](https://github.com/a-casas/MERN-app-backend)
